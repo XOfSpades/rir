@@ -31,5 +31,5 @@ defmodule Rir.Endpoint do
     key: "_rir_key",
     signing_salt: "bPP//g6q"
 
-  plug :router, Rir.Router
+  plug Rir.Router
 end
