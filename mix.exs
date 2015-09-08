@@ -32,7 +32,7 @@ defmodule Rir.Mixfile do
     [{:phoenix, "~> 0.13"},
      {:phoenix_ecto, "~> 0.4"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 1.0"},
+     {:phoenix_html, "~> 2.0"},
      {:phoenix_live_reload, "~> 0.4", only: :dev},
      {:cowboy, "~> 1.0"}]
   end
