@@ -7,11 +7,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Phoenix!</title>
+    <title>CMG</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
+    <div>
+       <img src="CMG.png" alt="CMG" height="100">
+
+      </img>
+    </div>
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
