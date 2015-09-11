@@ -12,16 +12,45 @@
   </head>
 
   <body>
-    <div>
-       <img src="images/CMG.png" alt="CMG" style="width:700px;"
-       >
+    <div class="layout-outer-background">
+      <div class="layout-header">
+        <div class"layout-first-level-navigation">
+          <ul class="navigation-list">
+            <li class="navigation-tab">
+              <span class="navigation-button">
+                Home
+              </span>
+            </li>
+            <li class="navigation-tab">
+              <span class="navigation-button">
+                Über uns
+              </span>
+            </li>
+            <li class="navigation-tab">
+              <span class="navigation-button">
+                Aktuelles
+              </span>
+            </li>
+            <li class="navigation-tab">
+              <span class="navigation-button">
+                Kontakt
+              </span>
+            </li>
+            <li class="navigation-tab">
+              <span class="navigation-button">
+                Impressum
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="layout-content">
+        <%= @inner %>
+      </div>
+      <div class="layout-footer">
 
-      </img>
+      </div>
     </div>
-
-      <%= @inner %>
-
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script>require("web/static/js/app")</script>
   </body>
