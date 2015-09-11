@@ -12,4 +12,4 @@ config :rir, Rir.Repo,
   username: System.get_env("DATABASE_USERNAME"),
   password: System.get_env("DATABASE_PASSWORD"),
   database: "rir_prod",
-  size: 20 # The amount of database connections in the pool
+  pool_size: 20 # The amount of database connections in the pool
