@@ -9,7 +9,7 @@ use Mix.Config
 config :rir, Rir.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "ccHHqPtmyBq5/6/LCdYZRs9tQhDqhUCesUS/LO62arzmGmfMU65fJBiX4qgDY55A",
+  secret_key_base: "8ddnY9tRIgQd9BlsyW9GvH0VXxuOM1CwuIbSpLAHfDX00Em64FE2MRm2nMk11fmB",
   debug_errors: false,
   pubsub: [name: Rir.PubSub,
            adapter: Phoenix.PubSub.PG2]

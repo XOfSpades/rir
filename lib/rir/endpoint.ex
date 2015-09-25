@@ -29,7 +29,7 @@ defmodule Rir.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_rir_key",
-    signing_salt: "bPP//g6q"
+    signing_salt: "mmtEdbob"
 
   plug Rir.Router
 end
