@@ -1,3 +1,5 @@
+$dark-green:#005566;
+
 body {
   margin: 0px;
 }
@@ -19,7 +21,7 @@ body {
 
 .layout-header {
   display: block;
-  border-bottom: 3px solid #005566;
+  border-bottom: 3px solid $dark-green;
 }
 
 .layout-first-level-navigation {
@@ -37,10 +39,12 @@ body {
   list-style: outside none none;
   line-height: 30px;
   font-family: Helvetica,Arial,sans-serif;
-  color: #005566;
   margin-right: 2em;
+  cursor: pointer;
 }
 
 .navigation-button {
   padding: 10px;
+  color: $dark-green;
+  text-decoration: none;
 }
