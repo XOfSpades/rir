@@ -17,29 +17,29 @@
         <div class"layout-first-level-navigation">
           <ul class="navigation-list">
             <li class="navigation-tab">
-              <span class="navigation-button">
+              <a class="navigation-button" href="/">
                 Home
-              </span>
+              </a>
             </li>
             <li class="navigation-tab">
-              <span class="navigation-button">
+              <a class="navigation-button" href="/ueber_uns">
                 Über uns
-              </span>
+              </a>
             </li>
             <li class="navigation-tab">
-              <span class="navigation-button">
+              <a class="navigation-button" href="/aktuelles">
                 Aktuelles
-              </span>
+              </a>
             </li>
             <li class="navigation-tab">
-              <span class="navigation-button">
+              <a class="navigation-button" href="/kontakt">
                 Kontakt
-              </span>
+              </a>
             </li>
             <li class="navigation-tab">
-              <span class="navigation-button">
+              <a class="navigation-button" href="/impressum">
                 Impressum
-              </span>
+              </a>
             </li>
           </ul>
         </div>
