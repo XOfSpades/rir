@@ -2,6 +2,7 @@ defmodule Rir.WeController do
   use Rir.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    lawyers = Rir.Repo.all(Lawyer)
+    render conn, "index.html", lawyers: lawyers
   end
 end
