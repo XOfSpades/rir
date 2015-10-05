@@ -1,0 +1,32 @@
+.member--container {
+  clear: both;
+}
+
+.member--content-text-container {
+  width: 60%;
+}
+
+.member--image-container {
+  width: 40%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.member--odd {
+  float: right;
+}
+
+.member--even {
+  float: left;
+}
+
+.member--content-text {
+  text-align: left;
+  margin-left: 5px;
+  margin-right: 5px;
+
+}
+
+.member--image {
+  width: 100%;
+}

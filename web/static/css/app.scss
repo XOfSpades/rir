@@ -8,20 +8,31 @@ body {
 }
 
 .layout-header, .layout-footer {
+  position: fixed;
   background-color: #BBBBBB;
   height: 60px;
+  width: 100%;
 }
 
 .layout-content {
-  min-height: 600px;
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  overflow: scroll;
   margin: 0 auto;
   text-align: center;
   background-color: #FFFFFF
 }
 
 .layout-header {
+  top: 0px;
   display: block;
   border-bottom: 3px solid $dark-green;
+}
+
+.layout-footer {
+  bottom: 0px;
+  height: 60px;
 }
 
 .layout-first-level-navigation {
