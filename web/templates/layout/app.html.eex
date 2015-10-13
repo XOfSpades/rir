@@ -41,6 +41,11 @@
                 Impressum
               </a>
             </li>
+            <li class="navigation-tab">
+              <a class="navigation-button" href="/administration_settings">
+                Administration
+              </a>
+            </li>
           </ul>
         </div>
       </div>
