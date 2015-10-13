@@ -47,10 +47,8 @@
       <div class="layout-content">
         <%= @inner %>
       </div>
-      <div class="layout-footer">
-
-      </div>
     </div>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script>require("web/static/js/app")</script>
   </body>

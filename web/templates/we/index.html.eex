@@ -1,23 +1,25 @@
 <h1>Wir sind für sie da</h1>
 
 <%= for { member, index } <- Enum.with_index(@members) do %>
-    <div class="member--container">
+  <div class="member--container">
+    <div class="member--image-container member--<%= if rem(index, 2) == 0, do: "even", else: "odd" %>">
+      <img class="member--image" src=<%= member.image_url %> />
+    </div>
+
+    <div class="member--content-text-container">
       <div class="member--name">
         <h2>
           <%= member.first_name %> <%= " " %> <%= member.last_name %>
         </h2>
       </div>
 
-      <div class="member--content">
-        <div class="member--image-container member--<%= if rem(index, 2) == 0, do: "even", else: "odd" %>">
-          <img class="member--image" src=<%= member.image_url %> />
-        </div>
-        <div class="member--content-text-container">
-          <p class="member--content-text">
-            <%= member.content %>
-          </p>
-        </div>
-      </div>
+      <p class="member--content-text">
+        <%= member.content %>
+      </p>
     </div>
+  </div>
+  <script src="<%= static_path(@conn, "/js/image_resize.js") %>"></script>
+  <script> console.log("foo"); </script>
+
 <% end %>
 <!-- <img src="//c2.staticflickr.com/6/5683/21732055838_8983c36dda_h.jpg"></img> -->

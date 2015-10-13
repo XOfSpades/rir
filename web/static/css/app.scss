@@ -10,14 +10,12 @@ body {
 .layout-header, .layout-footer {
   position: fixed;
   background-color: #BBBBBB;
-  height: 60px;
   width: 100%;
 }
 
 .layout-content {
   position: absolute;
-  top: 60px;
-  bottom: 60px;
+  top: 65px;
   overflow: scroll;
   margin: 0 auto;
   text-align: center;
