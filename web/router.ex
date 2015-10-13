@@ -20,6 +20,8 @@ defmodule Rir.Router do
     get "/impressum", AboutController, :index
     get "/aktuelles", NewsController, :index
     get "/kontakt", ContactController, :index
+    get  "/administration_settings", AdministrationController, :new
+    post "/administration_settings", AdministrationController, :create
   end
 
   # Other scopes may use custom stacks.
