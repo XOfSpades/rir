@@ -15,4 +15,7 @@ config :rir, Rir.Repo,
   username: "postgres",
   password: "postgres",
   database: "rir_test",
-  pool_size: 1 # Use a single connection for transactional tests
+  pool_size: 1, # Use a single connection for transactional tests
+  pool: Ecto.Adapters.SQL.Sandbox
+
+

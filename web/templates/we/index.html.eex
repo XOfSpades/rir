@@ -1,4 +1,4 @@
-<h1>Wir sind für sie da</h1>
+<h1>Wir sind für Sie da</h1>
 
 <%= for { member, index } <- Enum.with_index(@members) do %>
   <div class="member--container">
