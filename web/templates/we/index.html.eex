@@ -1,8 +1,8 @@
 <h1>Wir sind für Sie da</h1>
 
-<%= for { member, index } <- Enum.with_index(@members) do %>
+<%= for { modulo, member } <- (Stream.cycle(~w{even odd}) |> Stream.zip @(members)) do %>
   <div class="member--container">
-    <div class="member--image-container member--<%= if rem(index, 2) == 0, do: "even", else: "odd" %>">
+    <div class="member--image-container member--<%= modulo %>">
       <img class="member--image" src=<%= member.image_url %> />
     </div>
 
@@ -18,8 +18,6 @@
       </p>
     </div>
   </div>
-  <script src="<%= static_path(@conn, "/js/image_resize.js") %>"></script>
-  <script> console.log("foo"); </script>
 
 <% end %>
 <!-- <img src="//c2.staticflickr.com/6/5683/21732055838_8983c36dda_h.jpg"></img> -->
