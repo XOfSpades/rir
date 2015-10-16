@@ -1,5 +1,6 @@
 defmodule Rir.User do
   use Rir.Web, :model
+  alias Rir.Authenticate.Password, as: Password
 
   schema "users" do
     field :email, :string
@@ -13,8 +14,14 @@ defmodule Rir.User do
 
   def create(changeset, repo) do
     changeset
-    # |> put_change(:crypted_password, hashed_password(changeset.params["password"]))
+    |> put_change(
+         :crypted_password, hashed_password(changeset.params["password"])
+       )
     |> repo.insert()
+  end
+
+  def right_password?(password, encripted_password) do
+    Password.is_password(password, encripted_password)
   end
 
   @doc """
@@ -29,5 +36,11 @@ defmodule Rir.User do
     |> unique_constraint(:email, on: Rir.User, downcase: true)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
+  end
+
+  defp hashed_password(password) do
+    if is_bitstring(password) do
+      Password.salt_and_hash(password)
+    end
   end
 end

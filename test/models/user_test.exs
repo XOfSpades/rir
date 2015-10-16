@@ -4,12 +4,12 @@ defmodule Rir.UserTest do
 
   @valid_attrs %{ password: "some content", email: "some@content" }
 
-  test "changeset with valid attributes" do
+  test "Changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
     assert changeset.valid?
   end
 
-  test "changeset with invalid attributes" do
+  test "Changeset with invalid attributes" do
     invalid_attrs1 = %{}
     changeset1 = User.changeset(%User{}, invalid_attrs1)
     refute changeset1.valid?
@@ -23,7 +23,7 @@ defmodule Rir.UserTest do
     refute changeset3.valid?
   end
 
-  test "password has at least 8 characters" do
+  test "Password has at least 8 characters" do
     invalid_attrs = %{ password: "1234567", email: "some@content" }
     changeset1 = User.changeset(%User{}, invalid_attrs)
     refute changeset1.valid?
@@ -33,7 +33,7 @@ defmodule Rir.UserTest do
     assert changeset2.valid?
   end
 
-  test "email is unique" do
+  test "Email is unique" do
     valid_changeset = User.changeset(%User{}, @valid_attrs)
     Rir.User.create(valid_changeset, Rir.Repo)
 
@@ -52,5 +52,16 @@ defmodule Rir.UserTest do
 
     assert status == :error
     refute responded_changeset.valid?
+  end
+
+  test ".right_password?" do
+    changeset = User.changeset(%User{}, @valid_attrs)
+    { :ok, user } = Rir.User.create(changeset, Rir.Repo)
+
+    user = Rir.Repo.get(Rir.User, user.id)
+    crypted_password = user.crypted_password
+    assert Rir.User.right_password?(@valid_attrs[:password], crypted_password)
+
+    refute Rir.User.right_password?("wrong_password", crypted_password)
   end
 end
