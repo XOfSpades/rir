@@ -33,4 +33,14 @@ defmodule Rir.UserTest do
     changeset2 = User.changeset(%User{}, valid_attrs)
     assert changeset2.valid?
   end
+
+  test "email is unique" do
+    valid_changeset = User.changeset(%User{}, @valid_attrs)
+    { :ok, _ } = Rir.Repo.insert(valid_changeset)
+
+    invalid_changeset = User.changeset(%User{}, @valid_attrs)
+    { _, changeset } = Rir.Repo.insert(invalid_changeset)
+
+    refute changeset.valid?
+  end
 end

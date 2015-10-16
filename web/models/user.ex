@@ -26,7 +26,7 @@ defmodule Rir.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    # |> unique_constraint(:email, on: Rir.Repo, downcase: true)
+    |> unique_constraint(:email, on: Rir.User, downcase: true)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
   end
