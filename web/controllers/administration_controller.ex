@@ -10,7 +10,7 @@ defmodule Rir.AdministrationController do
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
 
-    { status, user } = Rir.User.create(changeset, Rir.Repo)
+    { status, _user } = Rir.User.create(changeset, Rir.Repo)
 
     if status == :ok do
 
