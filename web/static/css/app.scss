@@ -11,6 +11,7 @@ body {
   position: fixed;
   background-color: #BBBBBB;
   width: 100%;
+  z-index: 1;
 }
 
 .layout-content {
@@ -19,7 +20,8 @@ body {
   overflow: scroll;
   margin: 0 auto;
   text-align: center;
-  background-color: #FFFFFF
+  background-color: #FFFFFF;
+  z-index: 0;
 }
 
 .layout-header {
