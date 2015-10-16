@@ -1,5 +1,5 @@
 defmodule Rir.PageControllerTest do
-  use Rir.ConnCase
+  use Rir.ConnCase, async: true
 
   test "GET /" do
     conn = get conn(), "/"

@@ -1,6 +1,5 @@
 defmodule Rir.UserTest do
-  use Rir.ModelCase
-
+  use Rir.ModelCase, async: false
   alias Rir.User
 
   @valid_attrs %{ password: "some content", email: "some@content" }
@@ -36,11 +35,22 @@ defmodule Rir.UserTest do
 
   test "email is unique" do
     valid_changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, _ } = Rir.Repo.insert(valid_changeset)
+    Rir.User.create(valid_changeset, Rir.Repo)
 
     invalid_changeset = User.changeset(%User{}, @valid_attrs)
-    { _, changeset } = Rir.Repo.insert(invalid_changeset)
+    { status, changeset } = Rir.Repo.insert(invalid_changeset)
 
+    assert status == :error
     refute changeset.valid?
+  end
+
+  test "An invalid changeset cannot be saved" do
+    invalid_attrs = %{ email: "some@content" }
+    invalid_changeset = User.changeset(%User{}, invalid_attrs)
+
+    { status, responded_changeset } = Rir.Repo.insert(invalid_changeset)
+
+    assert status == :error
+    refute responded_changeset.valid?
   end
 end
