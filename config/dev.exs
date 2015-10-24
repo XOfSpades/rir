@@ -3,7 +3,7 @@ use Mix.Config
 config :comeonin,
   crypto_mod: :bcrypt,
   bcrypt_log_rounds: 15,
-  pbkdf2_rounds: 123_000,
+  pbkdf2_rounds: 123_000
 
 
 # For development, we disable any cache and enable
