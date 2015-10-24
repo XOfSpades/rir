@@ -60,8 +60,19 @@ defmodule Rir.UserTest do
 
     user = Rir.Repo.get(Rir.User, user.id)
     crypted_password = user.crypted_password
-    assert Rir.User.right_password?(@valid_attrs[:password], crypted_password)
 
+    assert Rir.User.right_password?(@valid_attrs[:password], crypted_password)
     refute Rir.User.right_password?("wrong_password", crypted_password)
+  end
+
+  test "Password is set and hashed" do
+    changeset = User.changeset(%User{}, @valid_attrs)
+    { :ok, user } = Rir.User.create(changeset, Rir.Repo)
+
+    user = Rir.Repo.get(Rir.User, user.id)
+    crypted_password = user.crypted_password
+
+    assert crypted_password != nil
+    assert crypted_password != @valid_attrs[:password]
   end
 end
