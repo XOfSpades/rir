@@ -75,4 +75,14 @@ defmodule Rir.UserTest do
     assert crypted_password != nil
     assert crypted_password != @valid_attrs[:password]
   end
+
+  test "User has no plain password stored" do
+    changeset = User.changeset(%User{}, @valid_attrs)
+    { :ok, user } = Rir.User.create(changeset, Rir.Repo)
+
+    user = Rir.Repo.get(Rir.User, user.id)
+    password = user.password
+
+    assert password == nil
+  end
 end
