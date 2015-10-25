@@ -1,6 +1,7 @@
 defmodule Rir.UserTest do
   use Rir.ModelCase, async: false
   alias Rir.User
+  alias Rir.Repo
 
   @valid_attrs %{ password: "some content", email: "some@content" }
 
@@ -35,10 +36,10 @@ defmodule Rir.UserTest do
 
   test "Email is unique" do
     valid_changeset = User.changeset(%User{}, @valid_attrs)
-    Rir.User.create(valid_changeset, Rir.Repo)
+    User.create(valid_changeset, Repo)
 
     invalid_changeset = User.changeset(%User{}, @valid_attrs)
-    { status, changeset } = Rir.Repo.insert(invalid_changeset)
+    { status, changeset } = Repo.insert(invalid_changeset)
 
     assert status == :error
     refute changeset.valid?
@@ -48,7 +49,7 @@ defmodule Rir.UserTest do
     invalid_attrs = %{ email: "some@content" }
     invalid_changeset = User.changeset(%User{}, invalid_attrs)
 
-    { status, responded_changeset } = Rir.Repo.insert(invalid_changeset)
+    { status, responded_changeset } = Repo.insert(invalid_changeset)
 
     assert status == :error
     refute responded_changeset.valid?
@@ -56,20 +57,20 @@ defmodule Rir.UserTest do
 
   test ".right_password?" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = Rir.User.create(changeset, Rir.Repo)
+    { :ok, user } = User.create(changeset, Repo)
 
-    user = Rir.Repo.get(Rir.User, user.id)
+    user = Repo.get(User, user.id)
     crypted_password = user.crypted_password
 
-    assert Rir.User.right_password?(@valid_attrs[:password], crypted_password)
-    refute Rir.User.right_password?("wrong_password", crypted_password)
+    assert User.right_password?(@valid_attrs[:password], crypted_password)
+    refute User.right_password?("wrong_password", crypted_password)
   end
 
   test "Password is set and hashed" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = Rir.User.create(changeset, Rir.Repo)
+    { :ok, user } = User.create(changeset, Repo)
 
-    user = Rir.Repo.get(Rir.User, user.id)
+    user = Repo.get(User, user.id)
     crypted_password = user.crypted_password
 
     assert crypted_password != nil
@@ -78,11 +79,30 @@ defmodule Rir.UserTest do
 
   test "User has no plain password stored" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = Rir.User.create(changeset, Rir.Repo)
+    { :ok, user } = User.create(changeset, Repo)
 
-    user = Rir.Repo.get(Rir.User, user.id)
+    user = Repo.get(User, user.id)
     password = user.password
 
     assert password == nil
+  end
+
+  test "User can be deleted" do
+    changeset = User.changeset(%User{}, @valid_attrs)
+    { :ok, user } = User.create(changeset, Repo)
+
+    { status, responded_user } = User.destroy(user.id)
+    assert status == :ok
+    assert responded_user.email == user.email
+    assert responded_user.id == user.id
+
+    response = Repo.get(User, user.id)
+    assert response == nil
+  end
+
+  test "If returns an errro when a user to be deleted doesn't exist" do
+    { status, responded_user } = User.destroy(42)
+    assert status == :error
+    assert responded_user == nil
   end
 end

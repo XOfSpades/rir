@@ -1,6 +1,8 @@
 defmodule Rir.User do
   use Rir.Web, :model
   alias Rir.Authenticate.Password, as: Password
+  alias Rir.Repo
+  alias Rir.User
 
   schema "users" do
     field :email, :string
@@ -20,6 +22,13 @@ defmodule Rir.User do
     |> repo.insert()
   end
 
+  def destroy(id) do
+    case Repo.get(User, id) do
+      nil -> { :error, nil }
+      user -> Repo.delete(user)
+    end
+  end
+
   def right_password?(password, encripted_password) do
     Password.is_password(password, encripted_password)
   end
@@ -33,7 +42,7 @@ defmodule Rir.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> unique_constraint(:email, on: Rir.User, downcase: true)
+    |> unique_constraint(:email, on: User, downcase: true)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
   end
