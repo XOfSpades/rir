@@ -20,8 +20,15 @@ defmodule Rir.Router do
     get "/impressum", AboutController, :index
     get "/aktuelles", NewsController, :index
     get "/kontakt", ContactController, :index
-    get  "/administration_settings", AdministrationController, :new
-    post "/administration_settings", AdministrationController, :create
+    resources "/administration-settings", AdministrationController,
+    only: [:index, :create, :delete, :new]
+    # get  "/administration-settings", AdministrationController, :index
+    # post "/administration-settings", AdministrationController, :create
+    # delete "/administration-settings/", AdministrationController, :delete
+    # get "/administration-settings/new", AdministrationController, :new
+    get "/admin-login", SessionController, :new
+    post "/session", SessionController, :create
+    delete "/session", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

@@ -46,6 +46,9 @@ defmodule Rir.Web do
       # Import URL helpers from the router
       import Rir.Router.Helpers
 
+      # Import authentication checks from Session
+      import Rir.Session, only: [current_user: 1, logged_in?: 1]
+
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
     end

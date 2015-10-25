@@ -1,27 +1,51 @@
 defmodule Rir.AdministrationController do
   use Rir.Web, :controller
   alias Rir.User
+  alias Rir.Repo
 
   def new(conn, _params) do
-    changeset = User.changeset(%User{})
-    render conn, changeset: changeset
+    render conn, "new.html"
   end
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
 
-    { status, _user } = Rir.User.create(changeset, Rir.Repo)
+    { status, _user } = User.create(changeset, Repo)
 
     if status == :ok do
-
       conn
       |> put_flash(:info, "Your account was created")
-      |> redirect(to: "/")
+      |> redirect(to: administration_path(conn, :index))
     else
       conn
       |> put_flash(:info, "Unable to create account")
       |> put_status(422)
-      |> render("new.html", changeset: changeset)
+      |> render "new.html", changeset: changeset
+    end
+  end
+
+  def index(conn, _params) do
+    # ToDo: Check weather user is authenticated
+    raise ArgumentError, "FooBar"
+    render conn, "index.html"
+  end
+
+  def delete(conn, params) do
+    # ToDo: Check weather user is authenticated
+    {user_id, ""} = Integer.parse(params["id"])
+
+    { status, _responded_user } = User.destroy(user_id)
+
+    if status == :ok do
+      conn
+      |> put_flash(:info, "User was deleted")
+      |> put_status(204)
+      |> redirect(to: "/administration-settings")
+    else
+      conn
+      |> put_flash(:info, "Could not delete user")
+      |> put_status(404)
+      |> redirect(to: "/administration-settings")
     end
   end
 end
