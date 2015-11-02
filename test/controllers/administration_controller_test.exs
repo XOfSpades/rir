@@ -4,7 +4,7 @@ defmodule Rir.AdministrationControllerTest do
 
   @valid_attrs %{ password: "5ome_P4ssw0rd", email: "some@content" }
 
-  test "Post /administration-settings" do
+  test "POST /administration-settings" do
     conn1 = post(
       conn(),
       "/administration-settings",
@@ -34,7 +34,7 @@ defmodule Rir.AdministrationControllerTest do
     assert html_response(conn4, 422)
   end
 
-  test "delete /administration-settings" do
+  test "DELETE /administration-settings" do
     changeset = User.changeset(%User{}, @valid_attrs)
     { :ok, user } = User.create(changeset, Rir.Repo)
 
@@ -49,6 +49,13 @@ defmodule Rir.AdministrationControllerTest do
       "administration-settings/#{user.id}"
     )
     assert html_response(conn2, 404)
+  end
 
+  test "GET administration-settings returns administrator list" do
+    changeset = User.changeset(%User{}, @valid_attrs)
+    { :ok, _user } = User.create(changeset, Rir.Repo)
+
+    conn = get(conn(), "/administration-settings")
+    assert redirected_to(conn, 401) == "/admin-login"
   end
 end

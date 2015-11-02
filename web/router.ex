@@ -22,10 +22,6 @@ defmodule Rir.Router do
     get "/kontakt", ContactController, :index
     resources "/administration-settings", AdministrationController,
     only: [:index, :create, :delete, :new]
-    # get  "/administration-settings", AdministrationController, :index
-    # post "/administration-settings", AdministrationController, :create
-    # delete "/administration-settings/", AdministrationController, :delete
-    # get "/administration-settings/new", AdministrationController, :new
     get "/admin-login", SessionController, :new
     post "/session", SessionController, :create
     delete "/session", SessionController, :delete

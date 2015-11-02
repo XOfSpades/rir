@@ -2,6 +2,7 @@ defmodule Rir.AdministrationController do
   use Rir.Web, :controller
   alias Rir.User
   alias Rir.Repo
+  alias Rir.Session
 
   def new(conn, _params) do
     render conn, "new.html"
@@ -26,8 +27,14 @@ defmodule Rir.AdministrationController do
 
   def index(conn, _params) do
     # ToDo: Check weather user is authenticated
-    raise ArgumentError, "FooBar"
-    render conn, "index.html"
+    if Session.logged_in?(conn) do
+      render conn, "index.html"
+    else
+      conn
+      |> put_flash(:info, "Unable to create account")
+      |> put_status(401)
+      |> redirect(to: "/admin-login")
+    end
   end
 
   def delete(conn, params) do
