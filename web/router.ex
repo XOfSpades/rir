@@ -24,7 +24,7 @@ defmodule Rir.Router do
     only: [:index, :create, :delete, :new]
     get "/admin-login", SessionController, :new
     post "/session", SessionController, :create
-    delete "/session", SessionController, :delete
+    post "/session/delete", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.

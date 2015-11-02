@@ -42,10 +42,22 @@
               </a>
             </li>
             <li class="navigation-tab">
-              <a class="navigation-button" href="/administration_settings">
+              <a class="navigation-button" href="/administration-settings">
                 Administration
               </a>
             </li>
+            <%= if Rir.Session.logged_in?(@conn) do %>
+              <li class="navigation-tab pull-right">
+                <form action="/session/delete" method="post">
+                  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+                  <button type="submit" class="navigation-button">
+                    <div class="navigation-button" href="/administration_settings">
+                      Logout
+                    </div>
+                  </button>
+                </form>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

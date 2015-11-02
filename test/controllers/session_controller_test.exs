@@ -52,9 +52,9 @@ defmodule Rir.SessionControllerTest do
     assert current_user.id == user.id
     assert current_user.email == user.email
 
-    conn2 = delete(
+    conn2 = post(
       conn(),
-      "/session"
+      "/session/delete"
     )
     assert html_response(conn2, 302)
 
