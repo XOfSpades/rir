@@ -5,7 +5,7 @@ defmodule Rir.SessionControllerTest do
 
   @valid_attrs %{ password: "5ome_P4ssw0rd", email: "some@content" }
 
-  test "Post /session" do
+  test "POST /session" do
     changeset = User.changeset(%User{}, @valid_attrs)
     { :ok, _ } = User.create(changeset, Rir.Repo)
 
@@ -26,12 +26,12 @@ defmodule Rir.SessionControllerTest do
     assert html_response(conn2, 403)
   end
 
-  test "Get /admin-login" do
+  test "GET /admin-login" do
     conn = get(conn(), "/admin-login")
     assert html_response(conn, 200)
   end
 
-  test "Delete /session" do
+  test "DELETE /session" do
     # ToDo
   end
 

@@ -12,7 +12,7 @@ defmodule Rir.SessionController do
         |> put_session(:current_user, user.id)
         |> put_flash(:info, "Logged in")
         |> redirect(to: administration_path(conn, :index))
-      :error ->
+      { :error, _ } ->
         conn
         |> put_flash(:info, "Wrong email or password")
         |> put_status(403)
