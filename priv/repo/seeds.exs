@@ -29,6 +29,13 @@ member3 = %Member{
            " Zur Zeit ist das hier allerdings leider noch eine Baustelle"
 }
 
-Enum.each([member1, member2, member3], fn(item) -> Rir.Repo.insert!(item) end)
+changeset = Rir.User.changeset(
+  %Rir.User{}, %{ password: "cmgcmgcmg", email: "gosewisch@rae-cmg.de" }
+)
+Rir.User.create(changeset, Rir.Repo)
+
+Enum.each([member1, member2, member3], fn(item) ->
+  Rir.Repo.insert!(item) end
+)
 
 Mix.shell.info "Done"
