@@ -35,7 +35,8 @@ defmodule Rir.Mixfile do
      {:phoenix_html, "~> 2.2"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 1.2"}
+     {:comeonin, "~> 1.2"},
+     {:mailman, github: "kamilc/mailman"}
     ]
   end
 end
