@@ -16,7 +16,7 @@ defmodule Rir.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/ueber_uns", WeController, :index
+    get "/ueber-uns", WeController, :index
     get "/impressum", AboutController, :index
     get "/aktuelles", NewsController, :index
     get "/kontakt", ContactController, :index

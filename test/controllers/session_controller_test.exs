@@ -31,10 +31,6 @@ defmodule Rir.SessionControllerTest do
     assert html_response(conn, 200)
   end
 
-  test "DELETE /session" do
-    # ToDo
-  end
-
   test "Integration test for session" do
     changeset = User.changeset(%User{}, @valid_attrs)
     { :ok, user } = User.create(changeset, Rir.Repo)
