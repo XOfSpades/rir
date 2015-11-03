@@ -18,4 +18,6 @@ config :rir, Rir.Repo,
   pool_size: 1, # Use a single connection for transactional tests
   pool: Ecto.Adapters.SQL.Sandbox
 
-
+# Improve bcript speed for tests
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

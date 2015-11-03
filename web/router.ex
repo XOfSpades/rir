@@ -16,10 +16,15 @@ defmodule Rir.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/ueber_uns", WeController, :index
+    get "/ueber-uns", WeController, :index
     get "/impressum", AboutController, :index
     get "/aktuelles", NewsController, :index
     get "/kontakt", ContactController, :index
+    resources "/administration-settings", AdministrationController,
+    only: [:index, :create, :delete, :new]
+    get "/admin-login", SessionController, :new
+    post "/session", SessionController, :create
+    post "/session/delete", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
