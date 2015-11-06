@@ -5,7 +5,7 @@ defmodule Rir.AuthenticationRequestTest do
   @valid_attrs %{ password: "5ome_P4ssw0rd", email: "some@content" }
 
   test "get administration index page after login" do
-    changeset = User.changeset(%User{}, @valid_attrs)
+    changeset = User.changeset(@valid_attrs)
     { :ok, _user } = User.create(changeset, Rir.Repo)
 
     conn1 = post(conn(), "/session", %{ user: @valid_attrs })

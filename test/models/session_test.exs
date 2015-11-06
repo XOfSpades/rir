@@ -5,9 +5,7 @@ defmodule Rir.SessionTest do
   alias Rir.Session
 
   @user_parameter %{ "password" => "D4_P455w0rd", "email" => "some@content" }
-  @user_changeset User.changeset(
-    %User{}, @user_parameter
-  )
+  @user_changeset User.changeset(@user_parameter)
 
   test "Create a session at login when password is valid" do
     { :ok, user } = User.create(@user_changeset, Repo)

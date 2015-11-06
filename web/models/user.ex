@@ -39,8 +39,8 @@ defmodule Rir.User do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
-    model
+  def changeset(params \\ :empty) do
+    %User{}
     |> cast(params, @required_fields, @optional_fields)
     |> unique_constraint(:email, on: User, downcase: true)
     |> validate_format(:email, ~r/@/)

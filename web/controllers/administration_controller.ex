@@ -9,7 +9,7 @@ defmodule Rir.AdministrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+    changeset = User.changeset(user_params)
 
     { status, _user } = User.create(changeset, Repo)
 
