@@ -1,5 +1,7 @@
 <h1>Wir sind für Sie da</h1>
 
+<!-- einfügen Lebenslauf, Rechtsgebiete (tabellarisch liste) -->
+
 <%= for { modulo, member } <- (Stream.cycle(~w{even odd}) |> Stream.zip @(members)) do %>
   <div class="member--container">
     <div class="member--image-container member--<%= modulo %>">
@@ -20,4 +22,3 @@
   </div>
 
 <% end %>
-<!-- <img src="//c2.staticflickr.com/6/5683/21732055838_8983c36dda_h.jpg"></img> -->
