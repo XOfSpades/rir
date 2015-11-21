@@ -1,3 +1,19 @@
 <h1> Ihre Anwälte in Rösrath </h1>
 
 <img src="images/CMG.png" alt="CMG" style="width:700px;"/>
+
+<div class="office-logo">
+  <div class="office-logo__header-container">
+    <div class="office-logo__header-container--inner">
+      <h1>CMG</h1>
+    </div>
+    <div class="office-logo__sub-header-container--inner">
+      <h2 class="office-logo__sub-header">Rechtsanwälte in Bürogemeinschaft</h2>
+    </div>
+  </div>
+  <div class="office-logo__field-container">
+    <%= for field <- (Rir.Repo.all(Rir.JuristicalField) |> Enum.map(&(&1.field))) do %>
+      <span class="office-logo__fields"> field </span>
+    <% end %>
+  </div>
+</div>
