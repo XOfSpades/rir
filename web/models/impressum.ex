@@ -3,19 +3,19 @@ defmodule Rir.Impressum do
 
   schema "impressums" do
     field :guarantor, :string
-    field :turnover_tax_nr, :string
     field :fax, :string
     field :phone, :string
     field :street, :string
     field :town, :string
     field :mail, :string
     field :web, :string
+    field :turnover_tax_nr, :string
     field :turnover_tax_id, :string
     field :lawyer_info, :string
-    field :bar_association, :string
     field :liability_insurance, :string
     field :additional_information, :string
     field :copyright, :string
+    has_one :bar_association, Rir.BarAssociation, on_delete: :fetch_and_delete
 
     timestamps
   end
