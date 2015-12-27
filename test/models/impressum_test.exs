@@ -2,8 +2,18 @@ defmodule Rir.ImpressumTest do
   use Rir.ModelCase
   alias Rir.Impressum
 
+  @bar_association_attrs %{
+    name: "K. O. Putsch",
+    street: "Area 52",
+    town: "Dirt",
+    phone: "0190 / 666 666",
+    fax: "0190 / 777 777",
+    mail: "Putsch@do_not_ask.gov",
+    web: "secret_area.com"
+  }
+
   @valid_attrs %{
-    bar_association: "some content",
+    bar_association: @bar_association_attrs,
     copyright: "some content",
     lawyer_info: "some content",
     liability_insurance: "some content",
@@ -102,7 +112,7 @@ defmodule Rir.ImpressumTest do
         web: "some content",
         turnover_tax_id: "some content",
         lawyer_info: "some content",
-        bar_association: "some content",
+        bar_association: @bar_association_attrs,
         liability_insurance: "some content",
         additional_information: "some content",
         copyright: "some content"
