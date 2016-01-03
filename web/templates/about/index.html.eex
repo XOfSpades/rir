@@ -2,39 +2,56 @@
 <h2>
   Impressum / Pflichtangaben nach dem MDStV / TDG
 </h2>
+<h3> Redaktionell verantwortlich </h3>
 <%= if @impressum != nil do %>
   <%= @impressum.guarantor %>
+  <br/>
   <%= @impressum.street %>
+  <br/>
   <%= @impressum.town %>
-  Tel.: <%= @impressum.phone %>
+  <br/>
+    Tel.: <%= @impressum.phone %>
+  <br/>
   Fax: <%= @impressum.fax %>
+  <br/>
   eMail: <%= @impressum.mail %>
+  <br/>
   Web: <%= @impressum.web %>
+  <br/>
   Umsatzsteuer-Nr.: <%= @impressum.turnover_tax_nr %>;
+  <br/>
   USt-IdNr.: <%= @impressum.turnover_tax_id %>
-  Pflichtangaben gem. § 5 TDG (2007)
+  <h2> Pflichtangaben gem. § 5 TDG (2007) </h2>
 
   <%= @impressum.lawyer_info %>
   <!--Die Rechtsanwälte Nikolaus Christ, Manfred Maleika und Wolfhard Gosewisch sind in der Bundesrepublik Deutschland als Rechtsanwälte zugelassen und gehören der Rechtsanwaltskammer Köln an. Die gesetzliche Berufsbezeichnung "Rechtsanwalt" wurde ihnen in der Bundesrepublik Deutschland verliehen, (§ 5 Abs. 1 Nr. 5b TMG).-->
  
   <%= if @impressum.bar_association != nil do %>
-    Zuständige Rechtsanwaltskammer:
+    <h2> Zuständige Rechtsanwaltskammer </h2>
     <%= @impressum.bar_association.name %>
+    <br/>
     <%= @impressum.bar_association.street %>
+    <br/>
     <%= @impressum.bar_association.town %>
+    <br/>
     Tel.: <%= @impressum.bar_association.phone %>
+<br/>
     Fax: <%= @impressum.bar_association.fax %>
+    <br/>
     eMail: <%= @impressum.bar_association.mail %>
+    <br/>
     Web: <%= @impressum.bar_association.web %>
   <% end %>
   <!--Rechtsanwaltskammer Köln Riehler Straße 30 50668 Köln Tel.: 0221/973010-0 Fax: 0221/973010-50  E-Mail: kontakt@rak-koeln.de Homepage: http://www.rak-koeln.de  -->
+
   Die Tätigkeit der Rechtsanwälte, die auf dieser Homepage vorgestellt werden, unterliegt den folgenden berufsrechtlichen Regelungen:  Bundesrechtsanwaltsordnung (BRAO), Berufsordnung für Rechtsanwälte (BORA), Fachanwaltsordnung (FAO), Standesregelung der Rechtsanwälte in der Europäischen Gemeinschaft (CCBE-Berufsregeln), Bundesrechtsanwaltsgebührenordnung (BRAGO), Rechtsanwaltsvergütungsgesetz (RVG).  Den Text dieser Vorschriften finden Sie auf der Homepage der Bundesrechtsanwaltskammer (BRAK): www.brak.de.
 
-  Vermögensschaden-Haftpflichtversicherung:
+  <h2> Vermögensschaden-Haftpflichtversicherung </h2>
   <%= @impressum.liability_insurance %>
   <!--Allianz Versicherungs-AG, 10900 Berlin, Telefon: +49 (0)40 6946933735
   Haftungsausschluss-->
 
+  <h2> Zusätzliche Information </h2>
   Die auf dem Server bereitgestellten Angaben wurden sorgfältig geprüft. Dessen ungeachtet kann keine Gewähr für die Korrektheit, Vollständigkeit, Qualität oder letzte Aktualität der Angaben bzw. bereitgestellten Informationen übernommen werden.
 
   <h3>Urheberrechtshinweise</h3>
