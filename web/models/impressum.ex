@@ -12,10 +12,12 @@ defmodule Rir.Impressum do
     field :turnover_tax_nr, :string
     field :turnover_tax_id, :string
     field :lawyer_info, :string
-    field :liability_insurance, :string
     field :additional_information, :string
     field :copyright, :string
     has_one :bar_association, Rir.BarAssociation, on_delete: :fetch_and_delete
+    has_one :liability_insurance,
+            Rir.LiabilityInsurance,
+            on_delete: :fetch_and_delete
 
     timestamps
   end

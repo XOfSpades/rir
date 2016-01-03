@@ -12,11 +12,20 @@ defmodule Rir.ImpressumTest do
     web: "secret_area.com"
   }
 
+  @liability_insurance_attrs %{
+    name: "No Money",
+    street: "Poorway",
+    postal_code: "4711",
+    town: "Dept City",
+    phone: "0190 / 666 666",
+    mail: "service@no-money.de"
+  }
+
   @valid_attrs %{
     bar_association: @bar_association_attrs,
     copyright: "some content",
     lawyer_info: "some content",
-    liability_insurance: "some content",
+    liability_insurance: @liability_insurance_attrs,
     turnover_tax_id: "some content",
     turnover_tax_nr: "some content",
   }
@@ -36,7 +45,7 @@ defmodule Rir.ImpressumTest do
         bar_association: "some content",
         copyright: "some content",
         lawyer_info: "some content",
-        liability_insurance: "some content",
+        liability_insurance: @liability_insurance_attrs,
         turnover_tax_id: "some content"
       }
     )
@@ -47,7 +56,7 @@ defmodule Rir.ImpressumTest do
         bar_association: "some content",
         copyright: "some content",
         lawyer_info: "some content",
-        liability_insurance: "some content",
+        liability_insurance: @liability_insurance_attrs,
         turnover_tax_nr: "some content"
       }
     )
@@ -68,7 +77,7 @@ defmodule Rir.ImpressumTest do
       %{
         bar_association: "some content",
         copyright: "some content",
-        liability_insurance: "some content",
+        liability_insurance: @liability_insurance_attrs,
         turnover_tax_id: "some content",
         turnover_tax_nr: "some content"
       }
@@ -79,7 +88,7 @@ defmodule Rir.ImpressumTest do
       %{
         bar_association: "some content",
         lawyer_info: "some content",
-        liability_insurance: "some content",
+        liability_insurance: @liability_insurance_attrs,
         turnover_tax_id: "some content",
         turnover_tax_nr: "some content"
       }
@@ -90,7 +99,7 @@ defmodule Rir.ImpressumTest do
       %{
         copyright: "some content",
         lawyer_info: "some content",
-        liability_insurance: "some content",
+        liability_insurance: @liability_insurance_attrs,
         turnover_tax_id: "some content",
         turnover_tax_nr: "some content"
       }
@@ -113,7 +122,7 @@ defmodule Rir.ImpressumTest do
         turnover_tax_id: "some content",
         lawyer_info: "some content",
         bar_association: @bar_association_attrs,
-        liability_insurance: "some content",
+        liability_insurance: @liability_insurance_attrs,
         additional_information: "some content",
         copyright: "some content"
       }

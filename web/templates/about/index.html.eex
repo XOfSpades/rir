@@ -46,10 +46,27 @@
 
   Die Tätigkeit der Rechtsanwälte, die auf dieser Homepage vorgestellt werden, unterliegt den folgenden berufsrechtlichen Regelungen:  Bundesrechtsanwaltsordnung (BRAO), Berufsordnung für Rechtsanwälte (BORA), Fachanwaltsordnung (FAO), Standesregelung der Rechtsanwälte in der Europäischen Gemeinschaft (CCBE-Berufsregeln), Bundesrechtsanwaltsgebührenordnung (BRAGO), Rechtsanwaltsvergütungsgesetz (RVG).  Den Text dieser Vorschriften finden Sie auf der Homepage der Bundesrechtsanwaltskammer (BRAK): www.brak.de.
 
-  <h2> Vermögensschaden-Haftpflichtversicherung </h2>
-  <%= @impressum.liability_insurance %>
+  <%= if @impressum.liability_insurance != nil do %>
+    <h2> Vermögensschaden-Haftpflichtversicherung </h2>
+    <%= @impressum.liability_insurance.name %>
+    <br/>
+    <%= if @impressum.liability_insurance.street do %>
+      <%= @impressum.liability_insurance.street %>
+      <br/>
+    <% end %>
+    <%= @impressum.liability_insurance.postal_code %> <%= " " %> <%= @impressum.liability_insurance.town %>
+    <br/>
+    <%= if @impressum.liability_insurance.street do %>
+      <%= @impressum.liability_insurance.phone %>
+      <br/>
+    <% end %>
+    <%= if @impressum.liability_insurance.street do %>
+      <%= @impressum.liability_insurance.mail %>
+      <br/>
+    <% end %>
   <!--Allianz Versicherungs-AG, 10900 Berlin, Telefon: +49 (0)40 6946933735
   Haftungsausschluss-->
+  <% end %>
 
   <h2> Zusätzliche Information </h2>
   Die auf dem Server bereitgestellten Angaben wurden sorgfältig geprüft. Dessen ungeachtet kann keine Gewähr für die Korrektheit, Vollständigkeit, Qualität oder letzte Aktualität der Angaben bzw. bereitgestellten Informationen übernommen werden.

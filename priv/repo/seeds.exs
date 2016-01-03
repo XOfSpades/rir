@@ -48,6 +48,13 @@ bar_association = %{
     web: "http://www.rak-koeln.de"
   }
 
+liability_insurance = %{
+  name: "Allianz Versicherungs-AG",
+  postal_code: "10900",
+  town: "Berlin",
+  phone: "+49 (0)40 6946933735"
+}
+
 impressum_changeset = Rir.Impressum.changeset(
   %Rir.Impressum{},
   %{
@@ -68,8 +75,7 @@ impressum_changeset = Rir.Impressum.changeset(
                  "Bundesrepublik Deutschland verliehen, " <>
                  "(§ 5 Abs. 1 Nr. 5b TMG).",
     bar_association: bar_association,
-    liability_insurance: "Allianz Versicherungs-AG, 10900 Berlin, " <>
-                         "Telefon: +49 (0)40 6946933735",
+    liability_insurance: liability_insurance,
     additional_information: "Die auf dem Server bereitgestellten Angaben " <>
                             "wurden sorgfältig geprüft. Dessen ungeachtet " <>
                             "kann keine Gewähr für die Korrektheit, " <>
