@@ -94,3 +94,15 @@ impressum_changeset = Rir.Impressum.changeset(
 Repo.insert(impressum_changeset)
 
 Mix.shell.info "Done"
+
+
+# Rechtsanwaltskammer Köln Riehler Straße 30 50668 Köln Tel.: 0221/973010-0 Fax: 0221/973010-50  E-Mail: kontakt@rak-koeln.de Homepage: http://www.rak-koeln.de  Die Tätigkeit der Rechtsanwälte, die auf dieser Homepage vorgestellt werden, unterliegt den folgenden berufsrechtlichen Regelungen:  Bundesrechtsanwaltsordnung (BRAO), Berufsordnung für Rechtsanwälte (BORA), Fachanwaltsordnung (FAO), Standesregelung der Rechtsanwälte in der Europäischen Gemeinschaft (CCBE-Berufsregeln), Bundesrechtsanwaltsgebührenordnung (BRAGO), Rechtsanwaltsvergütungsgesetz (RVG).  Den Text dieser Vorschriften finden Sie auf der Homepage der Bundesrechtsanwaltskammer (BRAK): www.brak.de.
+
+# Redaktionell verantwortlich:  Rechtsanwalt Wolfhard Gosewisch
+# Hauptstr. 18
+# 51503 Rösrath  Tel.: 02205/83396 
+# Fax: 02205/84065 eMail: info@rae-cmg.de
+#  Web: www.recht-in-roesrath.de  
+# Umsatzsteuer-Nr.: 204/5054/0698;
+# USt-IdNr.: folgt
+# Pflichtangaben gem. § 5 TDG (2007)
