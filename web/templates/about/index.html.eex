@@ -32,7 +32,8 @@
     <br/>
     <%= @impressum.bar_association.street %>
     <br/>
-    <%= @impressum.bar_association.town %>
+    <%=  "#{@impressum.bar_association.postal_code} " <>
+         "#{@impressum.bar_association.town}" %>
     <br/>
     Tel.: <%= @impressum.bar_association.phone %>
 <br/>

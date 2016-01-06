@@ -41,7 +41,8 @@ Enum.each([member1, member2, member3], fn(item) ->
 bar_association = %{
     name: "  Rechtsanwaltskammer Köln ",
     street: "Riehler Straße 30",
-    town: " 50668 Köln ",
+    postal_code: " 50668",
+    town: "Köln ",
     phone: "0221/973010-0",
     fax: "0221/973010-50",
     mail: "kontakt@rak-koeln.de",

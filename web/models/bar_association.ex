@@ -4,6 +4,7 @@ defmodule Rir.BarAssociation do
   schema "bar_associations" do
     field :name, :string
     field :street, :string
+    field :postal_code, :string
     field :town, :string
     field :phone, :string
     field :fax, :string
@@ -14,7 +15,7 @@ defmodule Rir.BarAssociation do
     timestamps
   end
 
-  @required_fields ~w(name street town phone fax mail web)
+  @required_fields ~w(name street postal_code town phone fax mail web)
   @optional_fields ~w()
 
   @doc """

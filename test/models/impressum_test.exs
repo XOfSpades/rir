@@ -5,6 +5,7 @@ defmodule Rir.ImpressumTest do
   @bar_association_attrs %{
     name: "K. O. Putsch",
     street: "Area 52",
+    postal_code: "4711",
     town: "Dirt",
     phone: "0190 / 666 666",
     fax: "0190 / 777 777",
