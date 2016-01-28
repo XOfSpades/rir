@@ -18,7 +18,7 @@ defmodule Rir.Router do
     get "/", PageController, :index
     get "/ueber-uns", WeController, :index
     get "/impressum", AboutController, :index
-    get "/aktuelles", NewsController, :index
+    get "/aktuelles", ArticlesController, :index
     get "/kontakt", ContactController, :index
     resources "/administration-settings", AdministrationController,
     only: [:index, :create, :delete, :new]
@@ -27,8 +27,10 @@ defmodule Rir.Router do
     post "/session/delete", SessionController, :delete
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Rir do
-  #   pipe_through :api
-  # end
+  scope "/api", Rir do
+    pipe_through :api
+
+    get "/aktuelles", Api.ArticlesController, :index
+    post "/aktuelles", Api.ArticlesController, :create
+  end
 end

@@ -1,4 +1,4 @@
-defmodule NewsControllerTest do
+defmodule Rir.ArticlesControllerTest do
   use Rir.ConnCase, async: true
 
   test "GET /aktuelles" do
