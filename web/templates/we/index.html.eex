@@ -1,6 +1,6 @@
 <h1>Wir sind für Sie da</h1>
 
-<%= for { modulo, member } <- (Stream.cycle(~w{even odd}) |> Stream.zip @(members)) do %>
+<%= for { modulo, member } <- (Stream.cycle(~w{even odd}) |> Stream.zip(@members)) do %>
   <div class="member--container">
     <div class="member--image-container member--<%= modulo %>">
       <img class="member--image" src=<%= member.image_url %> />
