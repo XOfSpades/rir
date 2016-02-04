@@ -17,9 +17,12 @@ defmodule Rir.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Rir, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+     applications: applications(Mix.env)]
   end
+
+  defp applications(:dev), do: applications(:all) ++ [:remix]
+  defp applications(_all), do: [:phoenix, :phoenix_html, :cowboy, :logger,
+                                :phoenix_ecto, :postgrex]
 
   # Specifies which paths to compile per environment
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
@@ -35,7 +38,8 @@ defmodule Rir.Mixfile do
      {:phoenix_html, "~> 2.2"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 1.2"}
+     {:comeonin, "~> 1.2"},
+     {:remix, "~> 0.0.1", only: :dev}
     ]
   end
 end
