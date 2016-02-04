@@ -24,6 +24,6 @@ defmodule Rir.SessionController do
     conn
     |> delete_session(:current_user)
     |> put_flash(:info, "Logged out")
-    |> redirect to: "/admin-login"
+    |> redirect(to: "/admin-login")
   end
 end

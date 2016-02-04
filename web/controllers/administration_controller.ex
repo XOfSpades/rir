@@ -21,7 +21,7 @@ defmodule Rir.AdministrationController do
       conn
       |> put_flash(:info, "Unable to create account")
       |> put_status(422)
-      |> render "new.html", changeset: changeset
+      |> render("new.html", changeset: changeset)
     end
   end
 

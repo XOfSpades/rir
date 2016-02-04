@@ -5,7 +5,7 @@ defmodule Rir.AboutController do
 
   def index(conn, _params) do
     impressums = Repo.all(Impressum)
-                   |> Repo.preload [:bar_association, :liability_insurance]
+                   |> Repo.preload([:bar_association, :liability_insurance])
     render conn, "index.html", impressum: first_impressum(impressums)
   end
 
