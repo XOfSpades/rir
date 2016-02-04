@@ -1,5 +1,5 @@
 defmodule Rir.ImpressumTest do
-  use Rir.ModelCase
+  use Rir.ModelCase, async: false
   alias Rir.Impressum
 
   @bar_association_attrs %{

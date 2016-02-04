@@ -1,5 +1,5 @@
 defmodule Rir.BarAssociationTest do
-  use Rir.ModelCase
+  use Rir.ModelCase, async: false
 
   alias Rir.BarAssociation
 

@@ -1,5 +1,5 @@
 defmodule Rir.ArticleTest do
-  use Rir.ModelCase
+  use Rir.ModelCase, async: false
 
   alias Rir.Article
 
