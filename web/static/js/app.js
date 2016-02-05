@@ -18,29 +18,17 @@ let AddArticle = React.createClass({
     articleAdded: React.PropTypes.func.isRequired
   },
 
-  getInitialState() {
-    return { header: "", content: "" }
-  },
-
   handleClick() {
-    this.props.articleAdded(this.state.header, this.state.content)
-  },
-
-  adaptHeader(event) {
-    console.log(this.state.header)
-    this.setState({header: event.target.value});
-  },
-
-  adaptContent(event) {
-    console.log(this.state.content)
-    this.setState({content: event.target.value});
+    var header = document.getElementById('new-article-header').value;
+    var content = document.getElementById('new-article-content').value;
+    this.props.articleAdded(header, content);
   },
 
   render() {
     return(
       <div>
-        <input onChange={this.adaptHeader}> Titel </input>
-        <input onChange={this.adaptContent}> Artikel </input>
+        <input id="new-article-header"> Titel </input>
+        <input id="new-article-content"> Artikel </input>
         <button onClick={this.handleClick}> Speichern </button>
       </div>
     )
