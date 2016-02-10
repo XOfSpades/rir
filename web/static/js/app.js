@@ -27,9 +27,35 @@ let AddArticle = React.createClass({
   render() {
     return(
       <div>
-        <input id="new-article-header"> Titel </input>
-        <input id="new-article-content"> Artikel </input>
+        Titel <input id="new-article-header"/>
+        Article <input id="new-article-content"/>
         <button onClick={this.handleClick}> Speichern </button>
+      </div>
+    )
+  }
+})
+
+//##############################################################################
+//################################## Article ###################################
+//##############################################################################
+
+let Article = React.createClass({
+  propTypes: {
+    article: React.PropTypes.object.isRequired
+  },
+
+  render() {
+    return(
+      <div>
+        <div className="article-header-container">
+          {this.props.article.header}
+        </div>
+        <div className="article-content-container">
+          {this.props.article.content}
+        </div>
+        <div className="article-creation-date-container">
+          {this.props.article.inserted_at}
+        </div>
       </div>
     )
   }
@@ -40,10 +66,22 @@ let AddArticle = React.createClass({
 //##############################################################################
 
 let ArticleList = React.createClass({
+  propTypes: {
+    articles: React.PropTypes.array.isRequired
+  },
+
+  renderArticles: function() {
+    return this.props.articles.map((function(article) {
+    //   return function(article) {
+      return <Article key={article.id} article={article} />;
+    //   };
+    }))
+  },
+
   render() {
     return(
       <div>
-        <p>foo</p>
+        {this.renderArticles()}
       </div>
     )
   }
@@ -56,13 +94,12 @@ let ArticleList = React.createClass({
 
 let ArticleContainer = React.createClass({
   componentDidMount() {
-    this.loadArticles()
+    this.loadArticles();
   },
 
   getInitialState() {
     return { articles: [] }
   },
-
 
   loadArticles() {
     var that = this
@@ -94,11 +131,11 @@ let ArticleContainer = React.createClass({
   },
 
   showNewArticleForm() {
-    return <AddArticle articleAdded={this.articleAdded} />
+    return <AddArticle articleAdded={this.articleAdded} />;
   },
 
   showArticles() {
-    return <ArticleList articles={this.state.articles} />
+    return <ArticleList articles={this.state.articles} />;
   },
 
   render() {
