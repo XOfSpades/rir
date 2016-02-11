@@ -27,8 +27,14 @@ let AddArticle = React.createClass({
   render() {
     return(
       <div>
-        Titel <input id="new-article-header"/>
-        Article <input id="new-article-content"/>
+        <div>
+          <span> Titel </span>
+          <input id="new-article-header"/>
+        </div>
+        <div>
+          <span> Text </span>
+          <input id="new-article-content"/>
+        </div>
         <button onClick={this.handleClick}> Speichern </button>
       </div>
     )
@@ -48,7 +54,7 @@ let Article = React.createClass({
     return(
       <div>
         <div className="article-header-container">
-          {this.props.article.header}
+          <h3> {this.props.article.header} </h3>
         </div>
         <div className="article-content-container">
           {this.props.article.content}
