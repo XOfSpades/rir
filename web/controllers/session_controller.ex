@@ -6,7 +6,7 @@ defmodule Rir.SessionController do
   end
 
   def create(conn, %{"user" => session_params}) do
-    case Rir.Session.login(session_params, Rir.Repo) do
+    case Rir.Session.login(session_params) do
       { :ok, user } ->
         conn
         |> put_session(:current_user, user.id)

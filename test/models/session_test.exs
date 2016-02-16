@@ -12,7 +12,7 @@ defmodule Rir.SessionTest do
   test "Create a session at login when password is valid" do
     { :ok, user } = User.create(@user_changeset, Repo)
 
-    { status, returned_user } = Session.login(@user_parameter, Repo)
+    { status, returned_user } = Session.login(@user_parameter)
 
     assert status == :ok
     assert returned_user.email == user.email
@@ -23,7 +23,7 @@ defmodule Rir.SessionTest do
     wrong_parameter = %{ "password" => "wrong_pw", "email" => "some@content" }
     { :ok, _user } = User.create(@user_changeset, Repo)
 
-    { status, returned_user } = Session.login(wrong_parameter, Repo)
+    { status, returned_user } = Session.login(wrong_parameter)
 
     assert status == :error
     assert returned_user == nil

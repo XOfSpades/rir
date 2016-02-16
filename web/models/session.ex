@@ -9,8 +9,8 @@ defmodule Rir.Session do
     if id, do: Rir.Repo.get(User, id)
   end
 
-  def login(params, repo) do
-    user = repo.get_by(User, email: String.downcase(params["email"]))
+  def login(params) do
+    user = Rir.Repo.get_by(User, email: String.downcase(params["email"]))
     case authenticate(user, params["password"]) do
       true -> { :ok, user }
       _    -> { :error , nil }
