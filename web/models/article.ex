@@ -21,4 +21,11 @@ defmodule Rir.Article do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def destroy(id) do
+    case Rir.Repo.get(Rir.Article, id) do
+      nil -> { :error, nil }
+      article -> Rir.Repo.delete(article)
+    end
+  end
 end
