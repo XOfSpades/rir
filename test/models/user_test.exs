@@ -36,7 +36,7 @@ defmodule Rir.UserTest do
 
   test "Email is unique" do
     valid_changeset = User.changeset(%User{}, @valid_attrs)
-    User.create(valid_changeset, Repo)
+    User.create(valid_changeset)
 
     invalid_changeset = User.changeset(%User{}, @valid_attrs)
     { status, changeset } = Repo.insert(invalid_changeset)
@@ -57,7 +57,7 @@ defmodule Rir.UserTest do
 
   test ".right_password?" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = User.create(changeset, Repo)
+    { :ok, user } = User.create(changeset)
 
     user = Repo.get(User, user.id)
     crypted_password = user.crypted_password
@@ -68,7 +68,7 @@ defmodule Rir.UserTest do
 
   test "Password is set and hashed" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = User.create(changeset, Repo)
+    { :ok, user } = User.create(changeset)
 
     user = Repo.get(User, user.id)
     crypted_password = user.crypted_password
@@ -79,7 +79,7 @@ defmodule Rir.UserTest do
 
   test "User has no plain password stored" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = User.create(changeset, Repo)
+    { :ok, user } = User.create(changeset)
 
     user = Repo.get(User, user.id)
     password = user.password
@@ -89,7 +89,7 @@ defmodule Rir.UserTest do
 
   test "User can be deleted" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = User.create(changeset, Repo)
+    { :ok, user } = User.create(changeset)
 
     { status, responded_user } = User.destroy(user.id)
     assert status == :ok

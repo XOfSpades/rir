@@ -7,7 +7,7 @@ defmodule Rir.SessionControllerTest do
 
   test "POST /session" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, _ } = User.create(changeset, Rir.Repo)
+    { :ok, _ } = User.create(changeset)
 
     conn1 = post(
       conn(),
@@ -33,7 +33,7 @@ defmodule Rir.SessionControllerTest do
 
   test "Integration test for session" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = User.create(changeset, Rir.Repo)
+    { :ok, user } = User.create(changeset)
 
     conn1 = post(
       conn(),

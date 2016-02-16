@@ -6,7 +6,7 @@ defmodule Rir.AuthenticationRequestTest do
 
   test "get administration index page after login" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, _user } = User.create(changeset, Rir.Repo)
+    { :ok, _user } = User.create(changeset)
 
     conn1 = post(conn(), "/session", %{ user: @valid_attrs })
     assert html_response(conn1, 302)

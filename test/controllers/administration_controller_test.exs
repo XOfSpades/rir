@@ -36,7 +36,7 @@ defmodule Rir.AdministrationControllerTest do
 
   test "DELETE /administration-settings" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, user } = User.create(changeset, Rir.Repo)
+    { :ok, user } = User.create(changeset)
 
     conn1 = delete(
       conn(),
@@ -53,7 +53,7 @@ defmodule Rir.AdministrationControllerTest do
 
   test "GET administration-settings returns administrator list" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    { :ok, _user } = User.create(changeset, Rir.Repo)
+    { :ok, _user } = User.create(changeset)
 
     conn = get(conn(), "/administration-settings")
     assert redirected_to(conn, 401) == "/admin-login"

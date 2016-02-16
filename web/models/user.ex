@@ -14,12 +14,12 @@ defmodule Rir.User do
   @required_fields ~w(email password)
   @optional_fields ~w()
 
-  def create(changeset, repo) do
+  def create(changeset) do
     changeset
     |> put_change(
          :crypted_password, hashed_password(changeset.params["password"])
        )
-    |> repo.insert()
+    |> Repo.insert()
   end
 
   def destroy(id) do
