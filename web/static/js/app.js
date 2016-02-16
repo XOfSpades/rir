@@ -47,7 +47,12 @@ let AddArticle = React.createClass({
 
 let Article = React.createClass({
   propTypes: {
-    article: React.PropTypes.object.isRequired
+    article: React.PropTypes.object.isRequired,
+    deleteArticleCallback: React.PropTypes.func.isRequired
+  },
+
+  deleteArticle() {
+    this.props.deleteArticleCallback(this.props.article.id)
   },
 
   render() {
@@ -62,6 +67,11 @@ let Article = React.createClass({
         <div className="article-creation-date-container">
           {this.props.article.inserted_at}
         </div>
+        <div>
+          <button className="btn-delete-article" onClick={this.deleteArticle}>
+            Delete
+          </button>
+        </div>
       </div>
     )
   }
@@ -73,14 +83,16 @@ let Article = React.createClass({
 
 let ArticleList = React.createClass({
   propTypes: {
-    articles: React.PropTypes.array.isRequired
+    articles: React.PropTypes.array.isRequired,
+    deleteArticleCallback: React.PropTypes.func.isRequired
   },
 
   renderArticles: function() {
+    var that = this
     return this.props.articles.map((function(article) {
-    //   return function(article) {
-      return <Article key={article.id} article={article} />;
-    //   };
+      return <Article key={article.id}
+                      article={article}
+                      deleteArticleCallback={that.props.deleteArticleCallback} />;
     }))
   },
 
@@ -108,6 +120,7 @@ let ArticleContainer = React.createClass({
   },
 
   loadArticles() {
+    console.log("load article");
     var that = this
     $.ajax({
       url: "/api/aktuelles",
@@ -117,22 +130,38 @@ let ArticleContainer = React.createClass({
       success: function(response) {
         that.setState({articles: response.articles})
       },
-      error: this.onErrorOccured
+      error: console.log("An error occured when loading")
     })
   },
 
   articleAdded(header, content) {
+    console.log("add article");
     var that = this
-    console.log(header)
-    console.log(content)
     $.ajax({
       url: "/api/aktuelles",
       type: "POST",
       contentType: 'application/json',
       dataType: 'json',
       data: JSON.stringify({ header: header, content: content }),
-      success: that.loadArticles(),
-      error: console.log("An error occured")
+      success: function(_response) {
+        that.loadArticles()
+      },
+      error: console.log("An error occured when creating")
+    })
+  },
+
+  deleteArticle(articleId) {
+    console.log("delete article");
+    var that = this
+    $.ajax({
+      url: "/api/aktuelles/" + articleId,
+      type: "DELETE",
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function(_response){
+        that.loadArticles()
+      },
+      error: console.log("An error occured when deleting")
     })
   },
 
@@ -141,10 +170,12 @@ let ArticleContainer = React.createClass({
   },
 
   showArticles() {
-    return <ArticleList articles={this.state.articles} />;
+    return <ArticleList articles={this.state.articles}
+                        deleteArticleCallback={this.deleteArticle} />;
   },
 
   render() {
+    console.log("render")
     //TODO: set loading indicator
     return(
       <div>
