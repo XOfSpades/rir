@@ -49,4 +49,22 @@ defmodule Rir.Api.ArticlesControllerTest do
 
     assert result == request_body
   end
+
+  test "DELETE /api/aktuelles:id" do
+    { :ok, article } = Article.changeset(
+      %Article{}, %{ :header => "header", :content => "content" }
+    ) |> Rir.Repo.insert
+
+    response = delete(conn(), "/api/aktuelles/#{article.id}")
+
+    assert response.status == 200
+    assert Rir.Repo.all(Article) == []
+
+    response2 = delete(conn(), "/api/aktuelles/#{article.id}")
+
+    assert response2.status == 404
+
+    response_body = Poison.decode!(response2.resp_body)
+    assert response_body["article"] == nil
+  end
 end

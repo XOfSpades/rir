@@ -30,7 +30,7 @@ defmodule Rir.Router do
   scope "/api", Rir do
     pipe_through :api
 
-    get "/aktuelles", Api.ArticlesController, :index
-    post "/aktuelles", Api.ArticlesController, :create
+    resources "/aktuelles", Api.ArticlesController,
+    only: [:index, :create, :delete]
   end
 end
