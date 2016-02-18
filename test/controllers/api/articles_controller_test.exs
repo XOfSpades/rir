@@ -2,6 +2,18 @@ defmodule Rir.Api.ArticlesControllerTest do
   use Rir.ConnCase, sync: true
   alias Rir.Article
 
+  defp auth_token do
+    %{user_id: 1}
+    |> Joken.token
+    |> Joken.with_signer(Joken.hs256(jwt_secret))
+  end
+
+  defp jwt_secret do
+    :rir
+    |> Application.get_env(Rir.Endpoint)
+    |> Keyword.fetch!(:jwt_secret)
+  end
+
   test "GET /api/aktuelles" do
     data = [
       %{ :header => "h1", :content => "content1" },

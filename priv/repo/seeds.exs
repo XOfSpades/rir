@@ -32,7 +32,7 @@ member3 = %Member{
 changeset = Rir.User.changeset(
   %Rir.User{}, %{ password: "cmgcmgcmg", email: "gosewisch@rae-cmg.de" }
 )
-Rir.User.create(changeset, Repo)
+Rir.User.create(changeset)
 
 Enum.each([member1, member2, member3], fn(item) ->
   Repo.insert!(item) end

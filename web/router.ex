@@ -12,6 +12,10 @@ defmodule Rir.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :jwt_auth do
+    plug Joken.Plug, on_verifying: &MyRouter.verify_function/0
+  end
+
   scope "/", Rir do
     pipe_through :browser # Use the default browser stack
 
@@ -31,6 +35,14 @@ defmodule Rir.Router do
     pipe_through :api
 
     resources "/aktuelles", Api.ArticlesController,
-    only: [:index, :create, :delete]
+    only: [:index]
+  end
+
+  scope "/api", Rir do
+    pipe_through :api
+    pipe_through :jwt_auth
+
+    resources "/aktuelles", Api.ArticlesController,
+    only: [:create, :delete]
   end
 end

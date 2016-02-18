@@ -38,6 +38,7 @@ defmodule Rir.Mixfile do
      {:phoenix_html, "~> 2.2"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
+     {:joken, "~> 1.1.0"},
      {:comeonin, "~> 1.2"},
      {:remix, "~> 0.0.1", only: :dev}
     ]
