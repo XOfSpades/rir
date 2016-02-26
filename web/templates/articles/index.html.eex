@@ -1,4 +1,4 @@
-<h1> In kürze finden Sie hier interessante Urteile. </h1>
+<h1> In Kürze finden Sie hier interessante Urteile. </h1>
 <!--
 <form action="<%= articles_path(@conn, :create) %>" method="post">
   <div class="form-group">
