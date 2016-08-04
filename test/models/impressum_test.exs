@@ -23,10 +23,8 @@ defmodule Rir.ImpressumTest do
   }
 
   @valid_attrs %{
-    bar_association: @bar_association_attrs,
     copyright: "some content",
     lawyer_info: "some content",
-    liability_insurance: @liability_insurance_attrs,
     turnover_tax_id: "some content",
     turnover_tax_nr: "some content",
   }
@@ -42,70 +40,24 @@ defmodule Rir.ImpressumTest do
     refute changeset1.valid?
     changeset2 = Impressum.changeset(
       %Impressum{},
-      %{
-        bar_association: "some content",
-        copyright: "some content",
-        lawyer_info: "some content",
-        liability_insurance: @liability_insurance_attrs,
-        turnover_tax_id: "some content"
-      }
+      Map.take(@valid_attrs, [:copyright, :lawyer_info, :turnover_tax_id])
     )
     refute changeset2.valid?
     changeset2 = Impressum.changeset(
       %Impressum{},
-      %{
-        bar_association: "some content",
-        copyright: "some content",
-        lawyer_info: "some content",
-        liability_insurance: @liability_insurance_attrs,
-        turnover_tax_nr: "some content"
-      }
+      Map.take(@valid_attrs, [:copyright, :lawyer_info, :turnover_tax_nr])
     )
     refute changeset2.valid?
     changeset3 = Impressum.changeset(
       %Impressum{},
-      %{
-        bar_association: "some content",
-        copyright: "some content",
-        lawyer_info: "some content",
-        turnover_tax_id: "some content",
-        turnover_tax_nr: "some content"
-      }
+      Map.take(@valid_attrs, [:copyright, :turnover_tax_nr, :turnover_tax_id])
     )
     refute changeset3.valid?
     changeset4 = Impressum.changeset(
       %Impressum{},
-      %{
-        bar_association: "some content",
-        copyright: "some content",
-        liability_insurance: @liability_insurance_attrs,
-        turnover_tax_id: "some content",
-        turnover_tax_nr: "some content"
-      }
+      Map.take(@valid_attrs, [:lawyer_info, :turnover_tax_nr, :turnover_tax_id])
     )
     refute changeset4.valid?
-    changeset5 = Impressum.changeset(
-      %Impressum{},
-      %{
-        bar_association: "some content",
-        lawyer_info: "some content",
-        liability_insurance: @liability_insurance_attrs,
-        turnover_tax_id: "some content",
-        turnover_tax_nr: "some content"
-      }
-    )
-    refute changeset5.valid?
-    changeset6 = Impressum.changeset(
-      %Impressum{},
-      %{
-        copyright: "some content",
-        lawyer_info: "some content",
-        liability_insurance: @liability_insurance_attrs,
-        turnover_tax_id: "some content",
-        turnover_tax_nr: "some content"
-      }
-    )
-    refute changeset6.valid?
   end
 
   test "changeset with valid optional attributes" do

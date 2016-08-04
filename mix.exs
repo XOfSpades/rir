@@ -32,12 +32,12 @@ defmodule Rir.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 1.1"},
-     {:phoenix_ecto, "~> 1.2"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.2"},
+    [{:phoenix, "~> 1.2"},
+     {:phoenix_ecto, "~> 3.0"},
+     {:postgrex, "~> 0.11.2"},
+     {:phoenix_html, "~> 2.6.2"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:cowboy, "~> 1.0"},
+     {:cowboy, "~> 1.0.4"},
      {:comeonin, "~> 1.2"},
      {:remix, "~> 0.0.1", only: :dev}
     ]

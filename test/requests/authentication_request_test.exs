@@ -8,7 +8,7 @@ defmodule Rir.AuthenticationRequestTest do
     changeset = User.changeset(%User{}, @valid_attrs)
     { :ok, _user } = User.create(changeset)
 
-    conn1 = post(conn(), "/session", %{ user: @valid_attrs })
+    conn1 = post(build_conn(), "/session", %{ user: @valid_attrs })
     assert html_response(conn1, 302)
 
     conn2 = get(conn1, "/administration-settings")

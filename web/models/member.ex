@@ -1,5 +1,5 @@
 defmodule Member do
-  use Rir.Web, :model
+  use Ecto.Schema
 
   schema "members" do
     field :first_name
@@ -16,6 +16,6 @@ defmodule Member do
 
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
   end
 end

@@ -29,14 +29,14 @@ member3 = %Member{
            " Zur Zeit ist das hier allerdings leider noch eine Baustelle"
 }
 
-changeset = Rir.User.changeset(
-  %Rir.User{}, %{ password: "cmgcmgcmg", email: "gosewisch@rae-cmg.de" }
-)
-Rir.User.create(changeset, Repo)
-
 Enum.each([member1, member2, member3], fn(item) ->
   Repo.insert!(item) end
 )
+
+changeset = Rir.User.changeset(
+  %Rir.User{}, %{ password: "cmgcmgcmg", email: "gosewisch@rae-cmg.de" }
+)
+Rir.User.create(changeset)
 
 bar_association = %{
     name: "  Rechtsanwaltskammer Köln ",
@@ -75,8 +75,6 @@ impressum_changeset = Rir.Impressum.changeset(
                  "Berufsbezeichnung \"Rechtsanwalt\" wurde ihnen in der " <>
                  "Bundesrepublik Deutschland verliehen, " <>
                  "(§ 5 Abs. 1 Nr. 5b TMG).",
-    bar_association: bar_association,
-    liability_insurance: liability_insurance,
     additional_information: "Die auf dem Server bereitgestellten Angaben " <>
                             "wurden sorgfältig geprüft. Dessen ungeachtet " <>
                             "kann keine Gewähr für die Korrektheit, " <>
@@ -98,7 +96,13 @@ impressum_changeset = Rir.Impressum.changeset(
   }
 )
 
-Repo.insert(impressum_changeset)
+impressum = Repo.insert!(impressum_changeset)
+
+Ecto.build_assoc(impressum, :bar_association, bar_association)
+|> Rir.Repo.insert!
+
+Ecto.build_assoc(impressum, :liability_insurance, liability_insurance)
+|> Rir.Repo.insert!
 
 Mix.shell.info "Done"
 

@@ -10,7 +10,7 @@ defmodule Rir.SessionControllerTest do
     { :ok, _ } = User.create(changeset)
 
     conn1 = post(
-      conn(),
+      build_conn(),
       "/session",
       %{ user:
         %{ email: @valid_attrs[:email], password: @valid_attrs[:password] }
@@ -19,7 +19,7 @@ defmodule Rir.SessionControllerTest do
     assert html_response(conn1, 302)
 
     conn2 = post(
-      conn(),
+      build_conn(),
       "/session",
       %{ user: %{ email: @valid_attrs[:email], password: "wrong_password" } }
     )
@@ -27,7 +27,7 @@ defmodule Rir.SessionControllerTest do
   end
 
   test "GET /admin-login" do
-    conn = get(conn(), "/admin-login")
+    conn = get(build_conn(), "/admin-login")
     assert html_response(conn, 200)
   end
 
@@ -36,7 +36,7 @@ defmodule Rir.SessionControllerTest do
     { :ok, user } = User.create(changeset)
 
     conn1 = post(
-      conn(),
+      build_conn(),
       "/session",
       %{ user:
         %{ email: @valid_attrs[:email], password: @valid_attrs[:password] }
@@ -49,7 +49,7 @@ defmodule Rir.SessionControllerTest do
     assert current_user.email == user.email
 
     conn2 = post(
-      conn(),
+      build_conn(),
       "/session/delete"
     )
     assert html_response(conn2, 302)

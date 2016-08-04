@@ -15,7 +15,7 @@ defmodule Rir.Api.ArticlesControllerTest do
       article
     end)
 
-    response = get(conn(), "/api/aktuelles")
+    response = get(build_conn(), "/api/aktuelles")
     assert response.status == 200
 
     response_body = Poison.decode!(response.resp_body)
@@ -40,7 +40,7 @@ defmodule Rir.Api.ArticlesControllerTest do
   test "POST /api/aktuelles" do
     request_body =
       %{ "header" => "WAT", "content" => "Let's talk about Elixir" }
-    response = post(conn(), "/api/aktuelles", request_body)
+    response = post(build_conn(), "/api/aktuelles", request_body)
 
     assert response.status == 200
 
@@ -55,12 +55,12 @@ defmodule Rir.Api.ArticlesControllerTest do
       %Article{}, %{ :header => "header", :content => "content" }
     ) |> Rir.Repo.insert
 
-    response = delete(conn(), "/api/aktuelles/#{article.id}")
+    response = delete(build_conn(), "/api/aktuelles/#{article.id}")
 
     assert response.status == 200
     assert Rir.Repo.all(Article) == []
 
-    response2 = delete(conn(), "/api/aktuelles/#{article.id}")
+    response2 = delete(build_conn(), "/api/aktuelles/#{article.id}")
 
     assert response2.status == 404
 

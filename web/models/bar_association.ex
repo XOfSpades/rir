@@ -1,5 +1,5 @@
 defmodule Rir.BarAssociation do
-  use Rir.Web, :model
+  use Ecto.Schema
 
   schema "bar_associations" do
     field :name, :string
@@ -26,6 +26,6 @@ defmodule Rir.BarAssociation do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
   end
 end

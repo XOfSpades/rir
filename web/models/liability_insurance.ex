@@ -1,5 +1,5 @@
 defmodule Rir.LiabilityInsurance do
-  use Rir.Web, :model
+  use Ecto.Schema
 
   schema "liability_insurances" do
     field :name, :string
@@ -24,6 +24,6 @@ defmodule Rir.LiabilityInsurance do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
   end
 end
