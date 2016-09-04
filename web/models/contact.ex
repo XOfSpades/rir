@@ -1,23 +1,22 @@
-defmodule Rir.Article do
-  import Ecto.Query
+defmodule Rir.Contact do
   use Rir.Web, :model
-  alias Rir.Repo
   alias Ecto.Changeset
 
-  schema "articles" do
+  schema "contacts" do
+    field :first_name, :string
+    field :last_name, :string
+    field :phone, :string
+    field :email, :string
     field :header, :string
-    field :content, :string
-    field :hot_topic, :boolean
+    field :message, :string
 
     timestamps
   end
 
-  @required_fields [:header, :content, :hot_topic]
-  @optional_fields ~w()
+  @required_fields [:first_name, :last_name, :header, :message, :phone, :email]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
-
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
@@ -28,14 +27,10 @@ defmodule Rir.Article do
   end
 
   def destroy(id) do
-    case Repo.get(Rir.Article, id) do
+    case Rir.Repo.get(Rir.Contact, id) do
       nil -> { :error, nil }
-      article -> Repo.delete(article)
+      contact -> Rir.Repo.delete(contact)
     end
   end
 
-  def hot_topics do
-    query = from a in Rir.Article, where: a.hot_topic == true
-    Repo.all(query)
-  end
 end

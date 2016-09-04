@@ -8,51 +8,53 @@ defmodule Rir.AdministrationController do
     render conn, "new.html"
   end
 
-  def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+  def create(conn, %{"administration" => user_params}) do
+    if Session.logged_in?(conn) do
+      changeset = User.changeset(%User{}, user_params)
 
-    { status, _user } = User.create(changeset)
-
-    if status == :ok do
-      conn
-      |> put_flash(:info, "Your account was created")
-      |> redirect(to: administration_path(conn, :index))
+      case User.create(changeset) do
+        { :ok, _user } ->
+          conn
+          |> put_flash(:info, "Your account was created")
+          |> redirect(to: administration_path(conn, :index))
+        _ ->
+          conn
+          |> put_flash(:info, "Unable to create account")
+          |> put_status(422)
+          |> render("new.html", changeset: changeset)
+      end
     else
-      conn
-      |> put_flash(:info, "Unable to create account")
-      |> put_status(422)
-      |> render("new.html", changeset: changeset)
+      ApplicationController.unauthorized(conn)
     end
-  end
+end
 
   def index(conn, _params) do
-    # ToDo: Check weather user is authenticated
     if Session.logged_in?(conn) do
-      render conn, "index.html"
+      user_admins = Rir.Repo.all(User)
+      render conn, "index.html", admins: user_admins
     else
-      conn
-      |> put_flash(:info, "Unable to create account")
-      |> put_status(401)
-      |> redirect(to: "/admin-login")
+      ApplicationController.unauthorized(conn)
     end
   end
 
   def delete(conn, params) do
-    # ToDo: Check weather user is authenticated
-    {user_id, ""} = Integer.parse(params["id"])
+    if Session.logged_in?(conn) do
+      {user_id, ""} = Integer.parse(params["id"])
 
-    { status, _responded_user } = User.destroy(user_id)
-
-    if status == :ok do
-      conn
-      |> put_flash(:info, "User was deleted")
-      |> put_status(204)
-      |> redirect(to: "/administration-settings")
+      case User.destroy(user_id) do
+        { :ok, _responded_user } ->
+          conn
+          |> put_flash(:info, "User was deleted")
+          |> put_status(204)
+          |> redirect(to: "/administration-settings")
+        _ ->
+          conn
+          |> put_flash(:info, "Could not delete user")
+          |> put_status(404)
+          |> redirect(to: "/administration-settings")
+      end
     else
-      conn
-      |> put_flash(:info, "Could not delete user")
-      |> put_status(404)
-      |> redirect(to: "/administration-settings")
+      ApplicationController.unauthorized(conn)
     end
   end
 end

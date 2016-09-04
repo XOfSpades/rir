@@ -1,28 +1,15 @@
 <h1>Create an account</h1>
 
-<%= form_for @changeset, administration_path(@conn, :create), fn f -> %>
-  <%= if f.errors != [] do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below:</p>
-      <ul>
-        <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<form action="<%= administration_path(@conn, :create) %>" method="post">
   <div class="form-group">
-    <label>Email</label>
-    <%= email_input f, :email, class: "form-control" %>
-  </div>
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
 
-  <div class="form-group">
-    <label>Password</label>
-    <%= password_input f, :password, class: "form-control" %>
-  </div>
+    <label for="administration[email]">Email</label>
+    <input type="text" name="administration[email]" class="form-control" />
 
-  <div class="form-group">
-    <%= submit "Signup", class: "btn btn-primary" %>
+    <label for="administration[password]">Password</label>
+    <input type="text" name="administration[password]" class="form-control" />
+
   </div>
-<% end %>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+</form>

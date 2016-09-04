@@ -1,0 +1,58 @@
+<h1> Aktuelle Informationen und Urteile </h1>
+
+<form class="form-horizontal" action="<%= articles_path(@conn, :create) %>" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+
+    <label for="article[header]">header</label>
+    <div class="col-sm-10">
+      <input type="text" name="article[header]" class="form-control article-form-control" />
+    </div>
+
+    <label for="article[content]">content</label>
+    <div class="col-sm-10">
+      <textarea type="text" name="article[content]" class="form-control article-form-control article-content-form-control"></textarea>
+    </div>
+
+    <label for="article[hot_topic]">Auf Startseite zeigen?</label>
+    <div class="col-sm-10">
+      <input type="checkbox" name="article[hot_topic]" class="form-control article-form-control" />
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+</form>
+
+<%= for article <- @articles do %>
+  <form class="form-horizontal" action="<%= "/aktuelles/#{article.id}" %>" method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="PATCH" />
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>" />
+
+      <label for="header" class="col-sm-2 control-label">Titel</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control article-form-control" value="<%= article.header %>" name="article[header]" placeholder="Titel" required="required" />
+      </div>
+
+      <label for="content" class="col-sm-2 control-label">Text</label>
+      <div class="col-sm-10">
+        <textarea type="text" class="form-control article-form-control article-content-form-control" value="<%= article.content %>" name="article[content]" placeholder="Text" required="required"><%= article.content %></textarea>
+      </div>
+
+      <label for="hot_topic" class="col-sm-2 control-label">Auf Startseite zeigen?</label>
+      <div class="col-sm-10">
+        <input type="hidden" value="false" name="article[hot_topic]">
+        <input type="checkbox" class="form-control article-form-control" value="<%= article.hot_topic %>" name="article[hot_topic]" placeholder="false" <%= if article.hot_topic, do: "checked", else: "" %> />
+      </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+
+  <div>
+    <form action="<%= "aktuelles/#{article.id}/delete" %>" method="post">
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+      <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+  </div>
+<% end %>

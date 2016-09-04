@@ -36,6 +36,7 @@ Enum.each([member1, member2, member3], fn(item) ->
 changeset = Rir.User.changeset(
   %Rir.User{}, %{ password: "cmgcmgcmg", email: "gosewisch@rae-cmg.de" }
 )
+
 Rir.User.create(changeset)
 
 bar_association = %{
@@ -103,6 +104,87 @@ Ecto.build_assoc(impressum, :bar_association, bar_association)
 
 Ecto.build_assoc(impressum, :liability_insurance, liability_insurance)
 |> Rir.Repo.insert!
+
+article1 = %Rir.Article{
+  header: "Lorem Ipsum",
+  content: "Lorem ipsum Elit amet voluptate Ut ut sint sit nulla irure amet " <>
+           "et laboris laboris consequat do proident et mollit magna " <>
+           "cupidatat eu in esse sint aute cillum esse sit Duis aliqua qui " <>
+           "laboris occaecat Duis velit dolor dolor non nisi dolore ut anim " <>
+           "labore in ut dolor ad ex Excepteur dolor in Duis deserunt " <>
+           "pariatur officia sint Duis Duis sit non enim ad reprehenderit " <>
+           "aute qui adipisicing do do dolore ut sint ut pariatur in aliqua " <>
+           "dolor ad ad nisi exercitation consectetur quis occaecat laboris "<>
+           "adipisicing Excepteur et nisi dolore dolore nulla pariatur " <>
+           "nostrud dolor labore ut eu consequat sed tempor irure deserunt " <>
+           "anim ut fugiat labore ea in dolor deserunt est cillum sit sit "<>
+           "Duis ut cupidatat non consectetur amet dolore eu exercitation " <>
+           "fugiat sunt Excepteur adipisicing labore Duis ullamco dolor " <>
+           "quis commodo sit ut reprehenderit id sit id ut Ut nisi cillum "<>
+           "est laborum et fugiat in officia elit in.",
+  hot_topic: true
+}
+article2 = %Rir.Article{
+  header: "Lorem Ipsum2",
+  content: "Lorem ipsum Elit amet voluptate Ut ut sint sit nulla irure amet " <>
+           "et laboris laboris consequat do proident et mollit magna " <>
+           "cupidatat eu in esse sint aute cillum esse sit Duis aliqua qui " <>
+           "laboris occaecat Duis velit dolor dolor non nisi dolore ut anim " <>
+           "labore in ut dolor ad ex Excepteur dolor in Duis deserunt " <>
+           "pariatur officia sint Duis Duis sit non enim ad reprehenderit " <>
+           "aute qui adipisicing do do dolore ut sint ut pariatur in aliqua " <>
+           "dolor ad ad nisi exercitation consectetur quis occaecat laboris "<>
+           "adipisicing Excepteur et nisi dolore dolore nulla pariatur " <>
+           "nostrud dolor labore ut eu consequat sed tempor irure deserunt " <>
+           "anim ut fugiat labore ea in dolor deserunt est cillum sit sit "<>
+           "Duis ut cupidatat non consectetur amet dolore eu exercitation " <>
+           "fugiat sunt Excepteur adipisicing labore Duis ullamco dolor " <>
+           "quis commodo sit ut reprehenderit id sit id ut Ut nisi cillum "<>
+           "est laborum et fugiat in officia elit in.",
+  hot_topic: true
+}
+article3 = %Rir.Article{
+  header: "Lorem Ipsum3",
+  content: "Lorem ipsum Elit amet voluptate Ut ut sint sit nulla irure amet " <>
+           "et laboris laboris consequat do proident et mollit magna " <>
+           "cupidatat eu in esse sint aute cillum esse sit Duis aliqua qui " <>
+           "laboris occaecat Duis velit dolor dolor non nisi dolore ut anim " <>
+           "labore in ut dolor ad ex Excepteur dolor in Duis deserunt " <>
+           "pariatur officia sint Duis Duis sit non enim ad reprehenderit " <>
+           "aute qui adipisicing do do dolore ut sint ut pariatur in aliqua " <>
+           "dolor ad ad nisi exercitation consectetur quis occaecat laboris "<>
+           "adipisicing Excepteur et nisi dolore dolore nulla pariatur " <>
+           "nostrud dolor labore ut eu consequat sed tempor irure deserunt " <>
+           "anim ut fugiat labore ea in dolor deserunt est cillum sit sit "<>
+           "Duis ut cupidatat non consectetur amet dolore eu exercitation " <>
+           "fugiat sunt Excepteur adipisicing labore Duis ullamco dolor " <>
+           "quis commodo sit ut reprehenderit id sit id ut Ut nisi cillum "<>
+           "est laborum et fugiat in officia elit in.",
+  hot_topic: false
+}
+article4 = %Rir.Article{
+  header: "Lorem Ipsum4",
+  content: "Lorem ipsum Elit amet voluptate Ut ut sint sit nulla irure amet " <>
+           "et laboris laboris consequat do proident et mollit magna " <>
+           "cupidatat eu in esse sint aute cillum esse sit Duis aliqua qui " <>
+           "laboris occaecat Duis velit dolor dolor non nisi dolore ut anim " <>
+           "labore in ut dolor ad ex Excepteur dolor in Duis deserunt " <>
+           "pariatur officia sint Duis Duis sit non enim ad reprehenderit " <>
+           "aute qui adipisicing do do dolore ut sint ut pariatur in aliqua " <>
+           "dolor ad ad nisi exercitation consectetur quis occaecat laboris "<>
+           "adipisicing Excepteur et nisi dolore dolore nulla pariatur " <>
+           "nostrud dolor labore ut eu consequat sed tempor irure deserunt " <>
+           "anim ut fugiat labore ea in dolor deserunt est cillum sit sit "<>
+           "Duis ut cupidatat non consectetur amet dolore eu exercitation " <>
+           "fugiat sunt Excepteur adipisicing labore Duis ullamco dolor " <>
+           "quis commodo sit ut reprehenderit id sit id ut Ut nisi cillum "<>
+           "est laborum et fugiat in officia elit in.",
+  hot_topic: true
+}
+
+Enum.each([article1, article2, article3, article4], fn(item) ->
+  Repo.insert!(item) end
+)
 
 Mix.shell.info "Done"
 

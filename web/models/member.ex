@@ -1,5 +1,6 @@
 defmodule Member do
   use Ecto.Schema
+  alias Ecto.Changeset
 
   schema "members" do
     field :first_name
@@ -11,11 +12,11 @@ defmodule Member do
     timestamps
   end
 
-  @required_fields ~w(first_name last_name email content image_url)
-  @optional_fields ~w()
+  @required_fields [:first_name, :last_name, :email, :content, :image_url]
 
   def changeset(model, params \\ :empty) do
     model
-    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
+    |> Changeset.cast(params, @required_fields)
+    |> Changeset.validate_required(@required_fields)
   end
 end

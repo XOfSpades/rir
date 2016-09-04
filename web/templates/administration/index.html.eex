@@ -1,1 +1,27 @@
 <h1>Admin User</h1>
+
+<%= if Rir.Session.current_user(@conn) do %>
+  <%= for admin <- @admins do %>
+    <%= if admin.email != Rir.Session.current_user(@conn).email do %>
+      <div class="admin-container">
+        <div class="admin-content-container">
+          <%= admin.email %>
+        </div>
+
+        <div class="admin-creation-date-container">
+          <%= admin.inserted_at %>
+        </div>
+
+        <div>
+          <!--<button class="btn-delete-admin">
+            Delete
+          </button>-->
+          <form action="<%= administration_path(@conn, :delete, admin) %>" method="delete">
+            <button type="submit" class="btn btn-danger pull-right">Delete</button>
+          </form>
+
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<% use Timex %>
+<%= for contact <- @contacts do %>
+  <div>
+    <h3> <%= contact.header %> </h3>
+    <span>
+      <%= Timex.DateTime.format(contact.inserted_at, "HH:MM dd.mm.yyyy") %> </span>
+    <div>
+      <p>
+        <%= contact.message %>
+      </p>
+    </div>
+    <div>
+      <span> <%= "#{contact.first_name} #{contact.last_name}" %></span>
+      <br/>
+      <span> <%= "Telefon: #{contact.phone}" %></span>
+      <br/>
+      <span> <%= "Email: #{contact.email}" %></span>
+      <br/>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<div class="cmg-logo__container" style="width: <%= @width %>; height: <%= @height %>;">
+  <span class="cmg-logo__header">
+    <div class="cmg-logo-title" style="font-size:<%= @header_size %>;">
+      <span class="cmg-logo__initials"> C </span>
+      <span class="cmg-logo__initials"> M </span>
+      <span class="cmg-logo__initials"> G </span>
+    </div>
+  </span>
+  <hr class="cmg-logo__rule"> </hr>
+  <h2 class="justify" style="font-size:<%= @subheader_size %>;">Ihre Anwälte in Rösrath </h2>
+
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Verkehrsrecht
+  </span>
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Allgemeines Zivilrecht
+  </span>
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Familienrecht
+  </span>
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Arbeitsrecht
+  </span>
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Strafrecht
+  </span>
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Mietrecht
+  </span>
+  <span class="cmg-logo__fields" style="font-size:<%= @fields_size %>;">
+    Forderungsmanagement
+  </span>
+
+</div>

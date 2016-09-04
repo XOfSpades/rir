@@ -1,5 +1,6 @@
 defmodule Rir.Impressum do
   use Ecto.Schema, :model
+  alias Ecto.Changeset
 
   schema "impressums" do
     field :guarantor, :string
@@ -26,8 +27,9 @@ defmodule Rir.Impressum do
                     :copyright]
   @optional_fields [:guarantor, :fax, :phone, :street, :town, :mail, :web,
                     :additional_information]
-  @standard_params [:turnover_tax_nr, :turnover_tax_id, :lawyer_info,
-                    :copyright]
+  @all_fields Enum.reduce(
+    @required_fields, @optional_fields, fn(item, acc) -> [item|acc] end)
+
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -39,7 +41,9 @@ defmodule Rir.Impressum do
   # http://blog.plataformatec.com.br/2015/08/working-with-ecto-associations-and-embeds/
   def changeset(model, params \\ :empty) do
     model
-    |> Ecto.Changeset.cast(params, @standard_params, @optional_fields)
-    |> Ecto.Changeset.validate_required(@required_fields)
+    |> Changeset.cast(params, @all_fields)
+    |> Changeset.cast_assoc(:liability_insurance, required: true)
+    |> Changeset.cast_assoc(:bar_association, required: true)
+    |> Changeset.validate_required(@required_fields)
   end
 end

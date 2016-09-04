@@ -1,3 +1,4 @@
+<%= render Rir.SharedView, "_paragraph.html" %>
 <h1> Impressum </h1>
 <h2>
   Impressum / Pflichtangaben nach dem MDStV / TDG

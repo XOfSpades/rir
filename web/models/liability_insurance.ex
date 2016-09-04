@@ -1,5 +1,6 @@
 defmodule Rir.LiabilityInsurance do
   use Ecto.Schema
+  alias Ecto.Changeset
 
   schema "liability_insurances" do
     field :name, :string
@@ -13,8 +14,11 @@ defmodule Rir.LiabilityInsurance do
     timestamps
   end
 
-  @required_fields ~w(name postal_code town)
-  @optional_fields ~w(street phone mail)
+  @required_fields [:name, :postal_code, :town]
+  @optional_fields [:street, :phone, :mail]
+  @all_parameters Enum.reduce(
+    @required_fields, @optional_fields, fn(item, acc) -> [item|acc] end
+  )
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,6 +28,7 @@ defmodule Rir.LiabilityInsurance do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
+    |> Changeset.cast(params, @all_parameters)
+    |> Changeset.validate_required(@required_fields)
   end
 end

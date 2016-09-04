@@ -1,4 +1,4 @@
-defmodule Rir.SessionController do
+defmodule Rir.SessionsController do
   use Rir.Web, :controller
 
   def new(conn, _params) do

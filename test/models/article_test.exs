@@ -5,7 +5,9 @@ defmodule Rir.ArticleTest do
 
   @valid_attrs %{
     header: "some content",
-    content: "some content"}
+    content: "some content",
+    hot_topic: false
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -35,4 +37,17 @@ defmodule Rir.ArticleTest do
     assert status == :error
     assert response == nil
   end
+
+  test "returns hot topics" do
+    {:ok, _article} = (Article.changeset(%Article{}, @valid_attrs)
+      |> Rir.Repo.insert)
+    {:ok, hot_article} = (Article.changeset(%Article{},
+                          %{
+                            header: "The hot one",
+                            content: "The nacked and the famous",
+                            hot_topic: true})
+      |> Rir.Repo.insert)
+    result = Article.hot_topics
+    assert result == [hot_article]
+end
 end

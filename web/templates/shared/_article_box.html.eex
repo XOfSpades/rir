@@ -1,0 +1,75 @@
+<div id="article-container-<%= @article.id %>" class="article-container article-base">
+  <div class="article-background"> </div>
+  <h2 class="article-item__header"><%= @article.header %></h2>
+  <br/>
+  <div class="article-item__content">
+    <%= String.slice(@article.content, 0, 250) %>
+  </div>
+  <br/>
+  <div class="article-item__date pull-right">
+    <%= @article.inserted_at %>
+  </div>
+</div>
+
+<!--Article modal-->
+<div id="article-<%= @article.id %>" class="article-modal">
+  <div class="article-modal-container article-base">
+    <!--    <div class="article-modal-background"></div> -->
+    <div class="article-modal-header">
+      <div>
+        <div class="article-modal-item__header"><%= @article.header %></div>
+        <div id="close-article-<%= @article.id %>" class="close-article">
+          ×
+        </div>
+      </div>
+      <br/>
+    </div>
+    <div class="article-modal-item__content">
+      <%= String.slice(@article.content, 0, 250) %>
+    </div>
+    <br/>
+    <div class="article-modal-item__date pull-right">
+      <%= @article.inserted_at %>
+    </div>
+  </div>
+</div>
+
+<!--
+  <div class="article-modal-container article-base">
+    <div class="article-modal-header">
+      <span id="close-article-<%= @article.id %>" class="close-article pull-right">
+        x
+      </span>
+    </div>
+    <div class="article-modal-content">
+      <p>Some text in the Modal..</p>
+    </div>
+    <div class="article-modal-footer">
+      <p>Footer</p>
+    </div>
+  </div>
+</div>
+-->
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("article-<%= @article.id %>");
+  // Get the button that opens the modal
+  var btn = document.getElementById("article-container-<%= @article.id %>");
+  // Get the <span> element that closes the modal
+  var span = document.getElementById("close-article-<%= @article.id %>");
+  // When the user clicks on the button, open the modal
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+</script>

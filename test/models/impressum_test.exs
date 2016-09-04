@@ -23,8 +23,10 @@ defmodule Rir.ImpressumTest do
   }
 
   @valid_attrs %{
+    bar_association: @bar_association_attrs,
     copyright: "some content",
     lawyer_info: "some content",
+    liability_insurance: @liability_insurance_attrs,
     turnover_tax_id: "some content",
     turnover_tax_nr: "some content",
   }

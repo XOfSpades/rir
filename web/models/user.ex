@@ -3,6 +3,7 @@ defmodule Rir.User do
   alias Rir.Authenticate.Password, as: Password
   alias Rir.Repo
   alias Rir.User
+  alias Ecto.Changeset
 
   schema "users" do
     field :email, :string
@@ -11,12 +12,11 @@ defmodule Rir.User do
     timestamps
   end
 
-  @required_fields ~w(email password)
-  @optional_fields ~w()
+  @required_fields [:email, :password]
 
   def create(changeset) do
     changeset
-    |> Ecto.Changeset.put_change(
+    |> Changeset.put_change(
          :crypted_password, hashed_password(changeset.params["password"])
        )
     |> Repo.insert()
@@ -41,10 +41,11 @@ defmodule Rir.User do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
-    |> Ecto.Changeset.unique_constraint(:email, on: User, downcase: true)
-    |> Ecto.Changeset.validate_format(:email, ~r/@/)
-    |> Ecto.Changeset.validate_length(:password, min: 8)
+    |> Changeset.cast(params, @required_fields)
+    |> Changeset.validate_required(@required_fields)
+    |> Changeset.unique_constraint(:email, on: User, downcase: true)
+    |> Changeset.validate_format(:email, ~r/@/)
+    |> Changeset.validate_length(:password, min: 8)
   end
 
   defp hashed_password(password) do

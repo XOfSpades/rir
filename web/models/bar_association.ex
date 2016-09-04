@@ -1,5 +1,7 @@
 defmodule Rir.BarAssociation do
-  use Ecto.Schema
+  use Rir.Web, :model
+  #use Ecto.Schema
+  alias Ecto.Changeset
 
   schema "bar_associations" do
     field :name, :string
@@ -15,8 +17,8 @@ defmodule Rir.BarAssociation do
     timestamps
   end
 
-  @required_fields ~w(name street postal_code town phone fax mail web)
-  @optional_fields ~w()
+  @required_fields [:name, :street, :postal_code, :town, :phone, :fax, :mail,
+                    :web]
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -26,6 +28,7 @@ defmodule Rir.BarAssociation do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> Ecto.Changeset.cast(params, @required_fields, @optional_fields)
-  end
+    |> Changeset.cast(params, @required_fields)
+    |> Changeset.validate_required(@required_fields)
+end
 end

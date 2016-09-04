@@ -18,7 +18,8 @@ defmodule Rir.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
+      use Timex.Ecto.Timestamps
     end
   end
 
@@ -28,7 +29,7 @@ defmodule Rir.Web do
 
       # Alias the data repository and import query/model functions
       alias Rir.Repo
-      import Ecto.Model
+      import Ecto.Schema
       import Ecto.Query, only: [from: 2]
 
       # Import URL helpers from the router
@@ -66,7 +67,7 @@ defmodule Rir.Web do
 
       # Alias the data repository and import query/model functions
       alias Rir.Repo
-      import Ecto.Model
+      import Ecto.Schema
       import Ecto.Query, only: [from: 2]
 
     end

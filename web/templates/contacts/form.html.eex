@@ -1,0 +1,46 @@
+<div class="paragraph"> &sect </div>
+<h1> Sie haben Fragen? Kontaktieren Sie uns </h1>
+
+<form action="<%= contacts_path(@conn, :create) %>" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+    <div class="form-input-container">
+      <div class="form-input-line">
+        <label for="contact[first_name]">Vorname</label>
+        </br>
+        <input class="string-field" type="text" name="contact[first_name]" class="form-control" />
+      </div>
+
+      <div class="form-input-line">
+        <label for="contact[last_name]">Nachname</label>
+        </br>
+        <input class="string-field" type="text" name="contact[last_name]" class="form-control" />
+      </div>
+
+      <div class="form-input-line">
+        <label for="contact[phone]">Telefonnummer</label>
+        </br>
+        <input class="string-field" type="text" name="contact[phone]" class="form-control" />
+      </div>
+
+      <div class="form-input-line">
+        <label for="contact[email]">Email</label>
+        </br>
+        <input class="string-field" type="text" name="contact[email]" class="form-control" />
+      </div>
+
+      <div class="form-input-line">
+        <label for="contact[header]">Betreff</label>
+        </br>
+        <input class="string-field" type="text" name="contact[header]" class="form-control form-header-field" />
+      </div>
+
+      <div class="form-input-line">
+        <label for="contact[message]">Nachricht</label>
+        </br>
+        <textarea class="text-field" type="text" name="contact[message]" class="form-control form-content-field" ></textarea>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Speichern</button>
+</form>

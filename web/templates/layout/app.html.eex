@@ -51,7 +51,7 @@
                 <form action="/session/delete" method="post">
                   <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
                   <button type="submit" class="navigation-button navigation-button-logout">
-                    <div href="/administration_settings">
+                    <div navigation-button-label href="/administration_settings">
                       Logout
                     </div>
                   </button>

@@ -1,15 +1,5 @@
-<h1> In Kürze finden Sie hier interessante Urteile. </h1>
-<!--
-<form action="<%= articles_path(@conn, :create) %>" method="post">
-  <div class="form-group">
-    <label for="article[header]">header</label>
-    <input type="text" name="article[header]" class="form-control" />
+<h1> Aktuelle Informationen und Urteile </h1>
 
-    <label for="article[content]">content</label>
-    <input type="text" name="article[content]" class="form-control" />
-
-  </div>
-  <button type="submit" class="btn btn-primary">Save</button>
-</form>
--->
-<div id="articles-container"> </div>
+<%= for article <- @articles do %>
+  <%= render Rir.SharedView, "_article_box.html", article: article %>
+<% end %>

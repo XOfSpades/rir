@@ -1,3 +1,15 @@
-<h1> Ihre Anwälte in Rösrath </h1>
+<div class="cmg-image-container">
+  <div class="cmg-logo">
+    <%= render Rir.SharedView, "_cmg.html", width: "400px",
+                                            height: "150px",
+                                            header_size: "50px",
+                                            subheader_size: "30px",
+                                            fields_size: "12px" %>
+  </div>
+</div>
 
-<img src="images/CMG.png" alt="CMG" style="width:700px;"/>
+<br/>
+
+<%= for article <- @articles do %>
+  <%= render Rir.SharedView, "_article_box.html", article: article %>
+<% end %>

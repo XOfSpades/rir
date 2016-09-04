@@ -1,0 +1,55 @@
+@import 'constants';
+
+.article-base {
+  background-color: $light-grey;
+  border: 5px solid $grey;
+  border-radius: 10px;
+}
+
+.article-container {
+  margin: 5px 2% 5px 2%;
+  padding: 5px 1% 5px 1%;
+  width: 26%;
+  height: 220px;
+  float: left;
+}
+
+.article-background {
+  position: absolute;
+  height: 200px;
+  width: 25%;
+  opacity: 0.1;
+  background-image: url("/images/justicia-civil-p.jpg");
+}
+
+.article-item{
+  &__header {
+    font-size: 130%;
+    font-weight: bold;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  &__content {
+    height: 120px;
+  }
+  &__date {
+    height: 15px;
+  }
+}
+
+.article-form-control {
+  width: 90%;
+}
+
+.article-content-form-control {
+  height: 200px;
+}
+
+/*.cmg-image-container {
+  float: right;
+}*/
+
+.cmg-image {
+  height: 120px;
+}
