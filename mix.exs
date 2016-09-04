@@ -4,7 +4,7 @@ defmodule Rir.Mixfile do
   def project do
     [app: :rir,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -39,7 +39,11 @@ defmodule Rir.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0.4"},
      {:comeonin, "~> 1.2"},
-     {:remix, "~> 0.0.1", only: :dev}
+     {:remix, "~> 0.0.1", only: :dev},
+     {:timex, "~> 2.1"},
+     {:timex_ecto, "~> 1.1.3"},
+     {:tzdata, "~> 0.1.8"},
+     {:mock, "~> 0.1.1", only: :test}
     ]
   end
 end
