@@ -35,7 +35,7 @@ config :logger, :console, format: "[$level] $message\n"
 # Configure your database
 config :rir, Rir.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "rir",
+  password: "123#rir#456",
   database: "rir_dev",
   pool_size: 10 # The amount of database connections in the pool

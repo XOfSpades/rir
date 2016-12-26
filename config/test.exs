@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :rir, Rir.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "rir",
+  password: "123#rir#456",
   database: "rir_test",
   pool_size: 1, # Use a single connection for transactional tests
   pool: Ecto.Adapters.SQL.Sandbox
