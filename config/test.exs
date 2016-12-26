@@ -15,7 +15,7 @@ config :rir, Rir.Repo,
   username: "rir",
   password: "123#rir#456",
   database: "rir_test",
-  pool_size: 1, # Use a single connection for transactional tests
+  pool_size: 10,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # Improve bcript speed for tests
