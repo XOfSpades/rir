@@ -14,12 +14,12 @@ defmodule ContactsControllerTest do
   }
 
   test "GET /kontakt" do
-    conn = get(conn(), "/kontakt")
+    conn = get(build_conn(), "/kontakt")
     assert html_response(conn, 200) =~ "Sie haben Fragen? Kontaktieren Sie uns"
   end
 
   test "POST /contact" do
-    conn = post(conn(), "/kontakt", %{contact: @valid_params})
+    conn = post(build_conn(), "/kontakt", %{contact: @valid_params})
     assert html_response(conn, 302)
     contacts = Rir.Repo.all(Contact)
     assert length(contacts) == 1
@@ -38,10 +38,10 @@ defmodule ContactsControllerTest do
       @valid_params
     ) |> Rir.Repo.insert
 
-    conn = delete(conn(), "/kontakt/#{contact.id}")
+    conn = delete(build_conn(), "/kontakt/#{contact.id}")
     assert html_response(conn, 401)
     with_mock Session, [logged_in?: fn(_params) -> true end] do
-      conn = delete(conn(), "/kontakt/#{contact.id}")
+      conn = delete(build_conn(), "/kontakt/#{contact.id}")
       assert html_response(conn, 302)
       assert Rir.Repo.get(Contact, contact.id) == nil
     end

@@ -6,7 +6,7 @@ defmodule Rir.AdministrationControllerTest do
 
   test "POST /administration-settings" do
     conn = post(
-      conn(),
+      build_conn(),
       "/administration-settings",
       %{ administration: @valid_attrs }
     )
@@ -54,7 +54,7 @@ defmodule Rir.AdministrationControllerTest do
     { :ok, user } = User.create(changeset)
 
     conn1 = delete(
-      conn(),
+      build_conn(),
       "administration-settings/#{user.id}"
     )
     assert html_response(conn1, 401)

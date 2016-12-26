@@ -20,11 +20,11 @@ defmodule Rir.ArticlesControllerTest do
   end
 
   test "GET /aktuelles" do
-    conn = get(conn(), "/aktuelles")
+    conn = get(build_conn(), "/aktuelles")
     response1 = html_response(conn, 200)
     assert response1 =~ "Urteile"
     with_mock Rir.Session, [logged_in?: fn(_parameter) -> true end] do
-      conn2 = get(conn(), "/aktuelles")
+      conn2 = get(build_conn(), "/aktuelles")
       assert html_response(conn2, 200) != response1
     end
   end
@@ -37,7 +37,7 @@ defmodule Rir.ArticlesControllerTest do
       header: "new content", content: "new content", hot_topic: true
     }
 
-    conn = patch(conn(), "/aktuelles/#{article.id}", %{article: new_params})
+    conn = patch(build_conn(), "/aktuelles/#{article.id}", %{article: new_params})
     assert html_response(conn, 401)
 
     not_updated_article = Rir.Repo.get!(Rir.Article, article.id)
@@ -47,7 +47,7 @@ defmodule Rir.ArticlesControllerTest do
     assert not_updated_article.hot_topic == false
 
     with_mock Rir.Session, [logged_in?: fn(_parameter) -> true end] do
-      conn = patch(conn(), "/aktuelles/#{article.id}", %{ article: new_params})
+      conn = patch(build_conn(), "/aktuelles/#{article.id}", %{ article: new_params})
       assert html_response(conn, 302)
 
       updated_article = Rir.Repo.get!(Rir.Article, article.id)
