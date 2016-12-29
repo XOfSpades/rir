@@ -40,8 +40,8 @@ defmodule Rir.Mixfile do
      {:cowboy, "~> 1.0.4"},
      {:comeonin, "~> 1.2"},
      {:remix, "~> 0.0.1", only: :dev},
-     {:timex, "~> 2.1"},
-     {:timex_ecto, "~> 1.1.3"},
+     {:timex, "~> 3.0"},
+     {:timex_ecto, "~> 3.0"},
      {:tzdata, "~> 0.1.8"},
      {:mock, "~> 0.1.1", only: :test}
     ]
