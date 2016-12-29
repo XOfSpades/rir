@@ -93,17 +93,13 @@ impressum_changeset = Rir.Impressum.changeset(
                "Vervielfältigungsvorrichtungen zu verlangen. Für den Fall " <>
                "der Zuwiderhandlung können Unterlassungsansprüche durch die " <>
                "zuständigen Gerichte mit Ordnungsgeldern bis zu 250.000,00 " <>
-               "Euro oder Ordnungshaft bis zu sechs Monaten geahndet werden."
+               "Euro oder Ordnungshaft bis zu sechs Monaten geahndet werden.",
+    bar_association: bar_association,
+    liability_insurance: liability_insurance
   }
 )
 
 impressum = Repo.insert!(impressum_changeset)
-
-Ecto.build_assoc(impressum, :bar_association, bar_association)
-|> Rir.Repo.insert!
-
-Ecto.build_assoc(impressum, :liability_insurance, liability_insurance)
-|> Rir.Repo.insert!
 
 article1 = %Rir.Article{
   header: "Lorem Ipsum",
