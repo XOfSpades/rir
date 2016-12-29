@@ -25,7 +25,7 @@
       <br/>
     </div>
     <div class="article-modal-item__content">
-      <%= String.slice(@article.content, 0, 250) %>
+      <%= @article.content %>
     </div>
     <br/>
     <div class="article-modal-item__date pull-right">
@@ -51,25 +51,45 @@
 </div>
 -->
 
-<script>
+<script type="text/javascript">
   // Get the modal
-  var modal = document.getElementById("article-<%= @article.id %>");
+  if (article_modals == null) {
+    var article_modals = new Object;
+    var modal_ids = new Array;
+  }
+  article_modals["article-<%= @article.id %>"] =
+    document.getElementById("article-<%= @article.id %>");
+  modal_ids.push("article-<%= @article.id %>")
+
   // Get the button that opens the modal
-  var btn = document.getElementById("article-container-<%= @article.id %>");
-  // Get the <span> element that closes the modal
-  var span = document.getElementById("close-article-<%= @article.id %>");
+  if (article_divs == null){
+    var article_divs = new Object;
+  }
+  article_divs["article-<%= @article.id %>"] =
+    document.getElementById("article-container-<%= @article.id %>");
   // When the user clicks on the button, open the modal
-  btn.onclick = function() {
-      modal.style.display = "block";
+  article_divs["article-<%= @article.id %>"].onclick = function() {
+    article_modals["article-<%= @article.id %>"].style.display = "block";
+  };
+
+  // Get the <span> element that closes the modal
+  if (article_close_btns == null) {
+    var article_close_btns = new Object;
   }
+  article_close_btns["article-<%= @article.id %>"] =
+    document.getElementById("close-article-<%= @article.id %>");
   // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-      modal.style.display = "none";
-  }
+  article_close_btns["article-<%= @article.id %>"].onclick = function() {
+    article_modals["article-<%= @article.id %>"].style.display = "none";
+  };
+
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
+    for (i = 0; i < modal_ids.length; i++) {
+      var modal_id = modal_ids[i];
+      if (event.target == article_modals[modal_id]) {
+        article_modals[modal_id].style.display = "none";
       }
+    }
   }
 </script>
